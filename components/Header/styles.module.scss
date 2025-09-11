@@ -1,0 +1,65 @@
+.container {
+	padding: 0 60px;
+	height: 93px;
+	max-width: 1440px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.links {
+		width: 236px;
+		display: flex;
+		justify-content: space-between;
+
+		.link {
+			text-decoration: none;
+			color: #000000;
+			font-size: 14px;
+			font-family: 'inter';
+
+			&:hover {
+				color: #ffb64f;
+			}
+		}
+
+		.actionsDisabled {
+			pointer-events: none;
+		}
+	}
+
+	.authorization {
+		width: 251px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.register {
+			font-size: 14px;
+			text-decoration: none;
+			color: #0000007a;
+			pointer-events: none;
+			font-family: 'inter';
+		}
+
+		.stick {
+			height: 26px;
+			border: 1px solid #029491;
+		}
+
+		.btnAuthorize {
+			cursor: pointer;
+			width: 65px;
+			height: 26px;
+			font-size: 14px;
+			background-color: #7ce3e1;
+			border: none;
+			border-radius: 5px;
+			font-family: 'inter';
+			font-weight: 500;
+
+			&:hover {
+				background-color: #ffb64f;
+			}
+		}
+	}
+}

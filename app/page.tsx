@@ -1,5 +1,6 @@
+import { Layout } from '@/components/Layout';
+
+// Главная страница
 export default function Home() {
-  return (
-    <div>123</div>
-  );
+	return <Layout></Layout>;
 }

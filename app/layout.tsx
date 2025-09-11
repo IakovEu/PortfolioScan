@@ -1,5 +1,9 @@
-import type { Metadata } from 'next';
+import 'normalize.css';
 import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
+import clsx from 'clsx';
 
 export const metadata: Metadata = {
 	title: 'Scan',
@@ -10,6 +14,16 @@ export const metadata: Metadata = {
 	},
 };
 
+const montserrat = Montserrat({
+	weight: ['900'], //Black
+	subsets: ['latin', 'cyrillic'],
+});
+
+const inter = Inter({
+	weight: ['400', '500', '600', '700'], // Regular, Medium, Semi-Bold, Bold
+	subsets: ['latin', 'cyrillic'],
+});
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -17,7 +31,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<body className={clsx(montserrat.className, inter.className)}>
+				{children}
+			</body>
 		</html>
 	);
 }

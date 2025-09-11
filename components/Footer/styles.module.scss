@@ -1,0 +1,24 @@
+.footer {
+	background-color: #029491;
+
+	.container {
+		height: 137px;
+		padding: 0 45px 0 60px;
+		max-width: 1440px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.contacts {
+			color: #ffffff;
+			font-size: 14px;
+			line-height: 17px;
+			font-weight: 400;
+			text-align: end;
+
+            .topContacts{
+                margin-bottom: 21px;
+            }
+		}
+	}
+}
