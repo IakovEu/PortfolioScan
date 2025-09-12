@@ -3,11 +3,16 @@
 
 	.container {
 		height: 137px;
-		padding: 0 45px 0 60px;
-		max-width: 1440px;
+		margin: 0 auto;
+		max-width: 1320px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		.logo {
+			width: auto;
+			height: 133px;
+		}
 
 		.contacts {
 			color: #ffffff;
@@ -16,9 +21,9 @@
 			font-weight: 400;
 			text-align: end;
 
-            .topContacts{
-                margin-bottom: 21px;
-            }
+			.topContacts {
+				margin-bottom: 21px;
+			}
 		}
 	}
 }

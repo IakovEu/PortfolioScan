@@ -1,7 +1,7 @@
 .container {
-	padding: 0 60px;
 	height: 93px;
-	max-width: 1440px;
+	max-width: 1320px;
+	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -56,6 +56,7 @@
 			border-radius: 5px;
 			font-family: 'inter';
 			font-weight: 500;
+			color: #000000;
 
 			&:hover {
 				background-color: #ffb64f;

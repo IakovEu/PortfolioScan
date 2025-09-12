@@ -1,10 +1,15 @@
+'use client';
 import st from './styles.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/public/logo.png';
 import clsx from 'clsx';
+import Button from '@mui/material/Button';
+import { useRouter } from 'next/navigation';
 
 export const Header = () => {
+	const router = useRouter();
+
 	return (
 		<header>
 			<div className={st.container}>
@@ -27,9 +32,17 @@ export const Header = () => {
 						Зарегистрироваться
 					</Link>
 					<div className={st.stick}></div>
-					<Link href="/authorization">
-						<button className={st.btnAuthorize}>Войти</button>
-					</Link>
+					<Button
+						className={st.btnAuthorize}
+						sx={{
+							textTransform: 'none',
+							fontFamily: 'inter',
+						}}
+						onClick={() => {
+							router.push('/authorization');
+						}}>
+						Войти
+					</Button>
 				</div>
 			</div>
 		</header>

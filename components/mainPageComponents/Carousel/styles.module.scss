@@ -1,0 +1,46 @@
+.container {
+	position: relative;
+	margin-bottom: 62px;
+
+	.subTitle {
+		font-size: 45px;
+		font-family: 'Montserrat';
+		margin: 0 0 62px;
+	}
+
+	.carousel {
+		margin: 0 15px;
+		padding: 8px 30px;
+
+		.slide {
+			padding: 30px 20px 0 20px;
+			height: 225px;
+			border-radius: 10px;
+			box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+
+			.sliderTxt {
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+	}
+
+	.customNext,
+	.customPrev {
+		position: absolute;
+		cursor: pointer;
+		width: fit-content;
+		z-index: 10;
+		user-select: none;
+	}
+
+	.customPrev {
+		left: 0;
+		bottom: 92px;
+	}
+
+	.customNext {
+		right: 0;
+		bottom: 92px;
+	}
+}

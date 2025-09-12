@@ -1,0 +1,30 @@
+.container {
+	margin: 24px 0 109px;
+	display: flex;
+
+	.title {
+		margin: 45px 0 29px;
+		font-size: 60px;
+		font-family: 'Montserrat';
+	}
+
+	.txt {
+		font-weight: 400;
+		font-size: 20px;
+		margin: 0;
+	}
+
+	.requestBtn {
+		width: 335px;
+		height: 59px;
+		margin-top: 70px;
+		background-color: #5970ff;
+		color: #ffffff;
+		font-size: 22px;
+		border-radius: 5px;
+
+		&:hover {
+			background-color: #ffb64f;
+		}
+	}
+}
