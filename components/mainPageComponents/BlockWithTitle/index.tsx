@@ -21,6 +21,7 @@ export const BlockWithTitle = () => {
 				</p>
 				<Button
 					className={st.requestBtn}
+					variant="contained"
 					sx={{
 						textTransform: 'none',
 						fontFamily: 'inter',

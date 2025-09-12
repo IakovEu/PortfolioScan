@@ -3,7 +3,6 @@ import st from './styles.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/public/logo.png';
-import clsx from 'clsx';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
 
@@ -20,10 +19,10 @@ export const Header = () => {
 					<Link className={st.link} href="/">
 						Главная
 					</Link>
-					<Link className={clsx(st.link, st.actionsDisabled)} href="/tariffs">
+					<Link className={st.link} href="/tariffs">
 						Тарифы
 					</Link>
-					<Link className={clsx(st.link, st.actionsDisabled)} href="/FAQ">
+					<Link className={st.link} href="/FAQ">
 						FAQ
 					</Link>
 				</nav>

@@ -1,0 +1,17 @@
+.container {
+	position: relative;
+	margin: 69px 81px 80px 0;
+	display: flex;
+
+	.title {
+		margin: 0;
+		font-size: 40px;
+		font-family: 'Montserrat';
+	}
+
+	.image {
+		position: absolute;
+        left: 112px;
+        bottom: 23px;
+	}
+}

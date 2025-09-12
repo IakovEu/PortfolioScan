@@ -21,10 +21,6 @@
 				color: #ffb64f;
 			}
 		}
-
-		.actionsDisabled {
-			pointer-events: none;
-		}
 	}
 
 	.authorization {
@@ -37,8 +33,11 @@
 			font-size: 14px;
 			text-decoration: none;
 			color: #0000007a;
-			pointer-events: none;
 			font-family: 'inter';
+
+			&:hover {
+				color: #ffb64f;
+			}
 		}
 
 		.stick {
