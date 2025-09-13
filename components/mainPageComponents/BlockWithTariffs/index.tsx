@@ -81,15 +81,15 @@ export const BlockWithTariffs = () => {
 								</p>
 								<h4 className={st.inTariff}>В тариф входит:</h4>
 								<div className={st.tariffPoints}>
-									<Image src={checkMark} alt="*" />{' '}
+									<Image src={checkMark} alt="*" />
 									<p className={st.tariffPoint}>{el.firstPoint}</p>
 								</div>
 								<div className={st.tariffPoints}>
-									<Image src={checkMark} alt="*" />{' '}
+									<Image src={checkMark} alt="*" />
 									<p className={st.tariffPoint}>{el.secondPoint}</p>
 								</div>
 								<div className={st.tariffPoints}>
-									<Image src={checkMark} alt="*" />{' '}
+									<Image src={checkMark} alt="*" />
 									<p className={st.tariffPoint}>{el.thirdPoint}</p>
 								</div>
 							</div>

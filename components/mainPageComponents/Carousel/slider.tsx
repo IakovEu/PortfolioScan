@@ -45,7 +45,7 @@ export const Slider = () => {
 			{imagesArr.map((el, ind) => {
 				return (
 					<SwiperSlide className={st.slide} key={ind}>
-						<Image src={el} alt="*" />
+						<Image className={st.slideImage} src={el} alt="*" />
 						<p
 							className={st.sliderTxt}
 							dangerouslySetInnerHTML={{ __html: txt[ind] }}

@@ -58,6 +58,7 @@
 				position: absolute;
 				top: 16px;
 				right: 11px;
+				user-select: none;
 			}
 
 			.secondIcon {
@@ -66,12 +67,14 @@
 				right: 6px;
 				width: 94px;
 				height: auto;
+				user-select: none;
 			}
 
 			.thirdIcon {
 				position: absolute;
 				top: 23px;
 				right: 5px;
+				user-select: none;
 			}
 		}
 
@@ -128,6 +131,7 @@
 
 				img {
 					margin: 0;
+					user-select: none;
 				}
 
 				.tariffPoint {
