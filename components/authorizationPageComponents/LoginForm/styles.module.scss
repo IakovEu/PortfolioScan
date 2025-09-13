@@ -1,4 +1,5 @@
 .form {
+	position: relative;
 	display: flex;
 	width: 429px;
 	height: 523px;
@@ -63,6 +64,35 @@
 		}
 	}
 
+	.incorrectInput {
+		border: 1px solid #ff5959;
+		box-shadow: 0 0 8px #ff59594d;
+	}
+
+	.firstIncorrectValue,
+	.secondIncorrectValue {
+		margin: 0;
+		font-weight: 400;
+		font-size: 12px;
+		color: #ff5959;
+		position: absolute;
+		display: none;
+	}
+
+	.firstIncorrectValue {
+		top: 174px;
+		left: 110px;
+	}
+
+	.secondIncorrectValue {
+		top: 274px;
+		left: 130px;
+	}
+
+	.activateIncorrectValue {
+		display: block;
+	}
+
 	.btnSubmit {
 		margin: 30px 0 11px;
 		background-color: #596fff;
@@ -115,5 +145,11 @@
 			border: 1px solid #596fff7d;
 			padding: 0;
 		}
+	}
+
+	.lock {
+		position: absolute;
+		top: -55px;
+		left: -52px;
 	}
 }

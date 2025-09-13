@@ -8,6 +8,7 @@ import { useState } from 'react';
 import googleImg from '@/public/google.svg';
 import facebookImg from '@/public/facebook.svg';
 import yandexImg from '@/public/yandex.svg';
+import lockImg from '@/public/lock.svg';
 
 export const LoginForm = () => {
 	const [password, setPassword] = useState('');
@@ -45,21 +46,37 @@ export const LoginForm = () => {
 			</label>
 			<input
 				id="tel"
-				className={st.input}
+				className={clsx(st.input, {
+					[st.incorrectInput]: 0,
+				})}
 				type="tel"
 				value={phone}
 				onChange={(e) => setPhone(e.target.value)}
 			/>
+			<p
+				className={clsx(st.firstIncorrectValue, {
+					[st.activateIncorrectValue]: 0,
+				})}>
+				Введите корректные данные
+			</p>
 			<label className={st.secondLabel} htmlFor="password">
 				Пароль:
 			</label>
 			<input
 				id="password"
-				className={st.input}
+				className={clsx(st.input, {
+					[st.incorrectInput]: 0,
+				})}
 				type="password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
+			<p
+				className={clsx(st.secondIncorrectValue, {
+					[st.activateIncorrectValue]: 0,
+				})}>
+				Неправильный пароль
+			</p>
 			<Button
 				className={st.btnSubmit}
 				sx={sx}
@@ -85,6 +102,7 @@ export const LoginForm = () => {
 					<Image src={yandexImg} alt="*" />
 				</Button>
 			</div>
+			<Image className={st.lock} src={lockImg} alt="*" />
 		</form>
 	);
 };

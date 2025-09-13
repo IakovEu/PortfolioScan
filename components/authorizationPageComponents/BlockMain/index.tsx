@@ -11,7 +11,7 @@ export const BlockMain = () => {
 				<br /> НА ТАРИФ, НЕОБХОДИМО
 				<br /> АВТОРИЗОВАТЬСЯ.
 			</h1>
-			<Image className={st.image} src={image} alt="*" />
+			<Image className={st.image} src={image} alt="*" priority />
 			<LoginForm />
 		</section>
 	);
