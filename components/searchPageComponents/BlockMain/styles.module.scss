@@ -102,5 +102,33 @@
 	}
 
 	.checkboxAndSubmit {
+		padding-left: 20px;
+
+		.btnContainer {
+			margin: 157px 0 10px;
+			text-align: end;
+
+			.submitBtn {
+				width: 305px;
+				height: 59px;
+				background-color: #5970ff;
+				font-family: 'inter';
+				font-weight: 500;
+				font-size: 22px;
+				border-radius: 5px;
+
+				&:hover{
+					background-color: #FFB64F;
+				}
+			}
+		}
+
+		.underBtn {
+			color: #949494;
+			margin: 0;
+			text-align: end;
+			font-size: 14px;
+			font-weight: 400;
+		}
 	}
 }

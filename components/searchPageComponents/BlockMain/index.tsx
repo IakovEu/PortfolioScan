@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import { sx } from '@/staticData';
 import { Tonality } from './tonality';
 import { DateSelection } from './dateSelection';
+import { Checkboxes } from './checkboxes';
 
 export const BLockMain = () => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -14,8 +15,10 @@ export const BLockMain = () => {
 		const docCount = formData.get('docCount');
 		const dateFrom = formData.get('dateFrom');
 		const dateTo = formData.get('dateTo');
+		const cb1 = formData.get('maxCompleteness');
+		const cb2 = formData.get('businessContext');
 
-		console.log({ inn, tonality, docCount, dateFrom, dateTo });
+		console.log({ inn, tonality, docCount, dateFrom, dateTo, cb1, cb2 });
 	};
 
 	return (
@@ -53,9 +56,17 @@ export const BLockMain = () => {
 					<DateSelection />
 				</div>
 				<div className={st.checkboxAndSubmit}>
-					<Button type="submit" variant="contained" sx={sx}>
-						Поиск
-					</Button>
+					<Checkboxes />
+					<div className={st.btnContainer}>
+						<Button
+							className={st.submitBtn}
+							type="submit"
+							variant="contained"
+							sx={sx}>
+							Поиск
+						</Button>
+					</div>
+					<p className={st.underBtn}>* Обязательные к заполнению поля</p>
 				</div>
 			</form>
 		</section>

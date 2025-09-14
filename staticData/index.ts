@@ -80,3 +80,14 @@ export const dataCards = [
 		activeStyle: 'activeThirdCard',
 	},
 ];
+
+// Лейблы и имена чекбоксов ([0] - label [1] - name)
+export const dataCheckboxes = [
+	['Признак максимальной полноты', 'maxCompleteness'],
+	['Упоминания в бизнес-контексте', 'businessContext'],
+	['Главная роль в публикации', 'mainRole'],
+	['Публикации только с риск-факторами', 'riskFactors'],
+	['Включать технические новости рынков', 'techNews'],
+	['Включать анонсы и календари', 'announcements'],
+	['Включать сводки новостей', 'newsBulletin'],
+];
