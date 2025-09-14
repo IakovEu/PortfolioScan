@@ -4,6 +4,7 @@ import Image from 'next/image';
 import image from '@/public/mainPage-1.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
+import { sx } from '@/staticData';
 
 export const BlockWithTitle = () => {
 	const router = useRouter();
@@ -22,10 +23,7 @@ export const BlockWithTitle = () => {
 				<Button
 					className={st.requestBtn}
 					variant="contained"
-					sx={{
-						textTransform: 'none',
-						fontFamily: 'inter',
-					}}
+					sx={sx}
 					onClick={() => {
 						router.push('/search');
 					}}>

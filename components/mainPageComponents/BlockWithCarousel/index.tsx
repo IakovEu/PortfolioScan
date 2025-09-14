@@ -4,7 +4,7 @@ import leftArrow from '@/public/leftArrow.svg';
 import rightArrow from '@/public/rightArrow.svg';
 import { Slider } from './slider';
 
-export const Carousel = () => {
+export const BlockWithCarousel = () => {
 	return (
 		<section className={st.container}>
 			<h2 className={st.subTitle}>ПОЧЕМУ ИМЕННО МЫ</h2>

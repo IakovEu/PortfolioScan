@@ -1,0 +1,48 @@
+.container {
+	margin: 69px 0 64px;
+	display: flex;
+	justify-content: space-between;
+
+	.titleAndImages {
+		margin-bottom: 47px;
+
+		.title {
+			position: relative;
+			font-family: 'Montserrat';
+			font-size: 40px;
+			margin: 0 0 25px;
+			z-index: 2;
+		}
+
+		.underTitle {
+			position: relative;
+			font-size: 20px;
+			font-weight: 400;
+			margin: 0;
+			z-index: 2;
+		}
+
+		.document {
+			position: absolute;
+			top: 250px;
+			right: 500px;
+			user-select: none;
+			z-index: 1;
+		}
+
+		.folders {
+			position: absolute;
+			top: 270px;
+			right: 145px;
+			user-select: none;
+			z-index: 1;
+		}
+
+		.imageGroup {
+			position: absolute;
+			top: 500px;
+			right: 0;
+			user-select: none;
+		}
+	}
+}

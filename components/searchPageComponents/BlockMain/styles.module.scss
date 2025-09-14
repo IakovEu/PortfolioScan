@@ -1,0 +1,77 @@
+.form {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 64px;
+	padding: 21px 39px 32px 44px;
+	width: 872px;
+	height: 543px;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+
+	.labelsAndInputs {
+		display: flex;
+		flex-direction: column;
+
+		.label {
+			font-size: 18px;
+			font-weight: 400;
+			margin-bottom: 20px;
+
+			.star {
+				font-size: 25px;
+			}
+		}
+
+		.input {
+			margin-bottom: 30px;
+			width: 242px;
+			height: 43px;
+			padding: 13px 17px;
+			border-radius: 5px;
+			border: 1px solid #c7c7c7;
+
+			&::placeholder {
+				font-size: 14px;
+				text-align: center;
+				color: #949494;
+			}
+
+			&:focus {
+				outline: none;
+				border: 1px solid #029491;
+			}
+		}
+		.chooseDate {
+            width: 372px;
+            display: flex;
+            gap: 20px;
+            
+			.customInput {
+				width: 176px;
+				height: 43px;
+				padding: 13px 17px;
+				font-size: 16px;
+				font-size: 14px;
+				font-family: 'inter';
+				font-weight: 400;
+				border-radius: 5px;
+				border: 1px solid #c7c7c7;
+				cursor: pointer;
+
+				&::placeholder {
+					font-size: 14px;
+					text-align: center;
+					color: #949494;
+				}
+
+				&:focus {
+					outline: none;
+					border: 1px solid #029491;
+				}
+			}
+		}
+	}
+
+	.checkboxAndSubmit {
+	}
+}

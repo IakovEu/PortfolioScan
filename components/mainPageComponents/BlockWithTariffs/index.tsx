@@ -1,57 +1,12 @@
 import clsx from 'clsx';
 import st from './styles.module.scss';
 import Image from 'next/image';
-import lamp from '@/public/lampIcon.png';
-import target from '@/public/targetIcon.png';
-import laptop from '@/public/laptopIcon.png';
 import checkMark from '@/public/checkMark.svg';
 import Button from '@mui/material/Button';
+import { dataCards, sx } from '@/staticData';
 
 export const BlockWithTariffs = () => {
 	const active = 0;
-
-	const dataCards = [
-		{
-			cardTop: 'firstCardTop',
-			name: 'Beginner',
-			underName: 'Для небольшого исследования',
-			icon: 'firstIcon',
-			src: lamp,
-			price: { normal: '799 ₽', crossed: '1 200 ₽' },
-			perMonth: 150,
-			firstPoint: 'Безлимитная история запросов',
-			secondPoint: 'Безопасная сделка',
-			thirdPoint: 'Поддержка 24/7',
-			activeStyle: 'activeFirstCard',
-		},
-		{
-			cardTop: 'secondCardTop',
-			name: 'Pro',
-			underName: 'Для HR и фрилансеров',
-			icon: 'secondIcon',
-			src: target,
-			price: { normal: '1 299 ₽', crossed: '2 600 ₽' },
-			perMonth: 279,
-			firstPoint: 'Все пункты тарифа Beginner',
-			secondPoint: 'Экспорт истории',
-			thirdPoint: 'Рекомендации по приоритетам',
-			activeStyle: 'activeSecondCard',
-		},
-		{
-			cardTop: 'thirdCardTop',
-			name: 'Business',
-			underName: 'Для корпоративных клиентов',
-			icon: 'thirdIcon',
-			src: laptop,
-			price: { normal: '2 379 ₽', crossed: '3 700 ₽' },
-			perMonth: 150,
-			firstPoint: 'Все пункты тарифа Pro',
-			secondPoint: 'Безлимитное количество запросов',
-			thirdPoint: 'Приоритетная поддержка',
-			activeStyle: 'activeThirdCard',
-		},
-	];
-
 	return (
 		<section>
 			<h2 className={st.subTitle}>НАШИ ТАРИФЫ</h2>
@@ -95,23 +50,11 @@ export const BlockWithTariffs = () => {
 							</div>
 							<div className={st.btnBlock}>
 								{active === ind ? (
-									<Button
-										className={st.activeBtn}
-										variant="contained"
-										sx={{
-											textTransform: 'none',
-											fontFamily: 'inter',
-										}}>
+									<Button className={st.activeBtn} variant="contained" sx={sx}>
 										Перейти в личный кабинет
 									</Button>
 								) : (
-									<Button
-										className={st.defaultBtn}
-										variant="contained"
-										sx={{
-											textTransform: 'none',
-											fontFamily: 'inter',
-										}}>
+									<Button className={st.defaultBtn} variant="contained" sx={sx}>
 										Подробнее
 									</Button>
 								)}

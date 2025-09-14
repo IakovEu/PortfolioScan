@@ -5,6 +5,7 @@ import Link from 'next/link';
 import logo from '@/public/logo.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
+import { sx } from '@/staticData';
 
 export const Header = () => {
 	const router = useRouter();
@@ -27,16 +28,18 @@ export const Header = () => {
 					</Link>
 				</nav>
 				<div className={st.authorization}>
-					<Link className={st.register} href="/register">
+					<Button
+						className={st.register}
+						sx={sx}
+						onClick={() => {
+							router.push('/authorization');
+						}}>
 						Зарегистрироваться
-					</Link>
+					</Button>
 					<div className={st.stick}></div>
 					<Button
 						className={st.btnAuthorize}
-						sx={{
-							textTransform: 'none',
-							fontFamily: 'inter',
-						}}
+						sx={sx}
 						onClick={() => {
 							router.push('/authorization');
 						}}>

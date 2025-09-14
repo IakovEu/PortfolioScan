@@ -9,15 +9,12 @@ import googleImg from '@/public/google.svg';
 import facebookImg from '@/public/facebook.svg';
 import yandexImg from '@/public/yandex.svg';
 import lockImg from '@/public/lock.svg';
+import { sx } from '@/staticData';
 
 export const LoginForm = () => {
 	const [password, setPassword] = useState('');
 	const [phone, setPhone] = useState('');
 	const activeForm: string = 'login';
-	const sx = {
-		textTransform: 'none',
-		fontFamily: 'inter',
-	};
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
