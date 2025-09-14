@@ -42,11 +42,11 @@
 			}
 		}
 		.chooseDate {
-            width: 372px;
-            display: flex;
-            gap: 20px;
-            
+			width: 372px;
+			display: flex;
+
 			.customInput {
+				position: relative;
 				width: 176px;
 				height: 43px;
 				padding: 13px 17px;
@@ -57,6 +57,8 @@
 				border-radius: 5px;
 				border: 1px solid #c7c7c7;
 				cursor: pointer;
+				z-index: 2;
+				background-color: transparent;
 
 				&::placeholder {
 					font-size: 14px;
@@ -68,6 +70,33 @@
 					outline: none;
 					border: 1px solid #029491;
 				}
+			}
+
+			.firstrectangle {
+				position: absolute;
+				bottom: 18px;
+				right: 29px;
+				rotate: 180deg;
+				z-index: 1;
+			}
+
+			.secondRectangle {
+				position: absolute;
+				bottom: 18px;
+				right: 8px;
+				rotate: 180deg;
+				z-index: 1;
+			}
+
+			.rotateRectangle {
+				rotate: 360deg;
+				bottom: 13px;
+			}
+
+			.castomCalendar {
+				font-family: 'inter';
+				font-weight: 400;
+				font-size: 12px;
 			}
 		}
 	}
