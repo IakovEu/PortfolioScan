@@ -8,10 +8,10 @@ export const BlockWithCarousel = () => {
 	return (
 		<section className={st.container}>
 			<h2 className={st.subTitle}>ПОЧЕМУ ИМЕННО МЫ</h2>
-			<div className={`${st.customPrev} custom-arrow prev`}>
+			<div className={st.customPrev}>
 				<Image src={leftArrow} alt="<—" />
 			</div>
-			<div className={`${st.customNext} custom-arrow next`}>
+			<div className={st.customNext}>
 				<Image src={rightArrow} alt="—>" />
 			</div>
 			<Slider />

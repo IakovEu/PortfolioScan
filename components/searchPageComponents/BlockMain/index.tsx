@@ -5,28 +5,32 @@ import { sx } from '@/staticData';
 import { Tonality } from './tonality';
 import { DateSelection } from './dateSelection';
 import { Checkboxes } from './checkboxes';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import imageGroupImg from '@/public/imageGroup3.png';
 
 export const BLockMain = () => {
+	const router = useRouter();
+
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
-		const inn = formData.get('inn');
-		const tonality = formData.get('tonality');
-		const docCount = formData.get('docCount');
-		const dateFrom = formData.get('dateFrom');
-		const dateTo = formData.get('dateTo');
-		const cb1 = formData.get('maxCompleteness');
-		const cb2 = formData.get('businessContext');
 
-		console.log({ inn, tonality, docCount, dateFrom, dateTo, cb1, cb2 });
+		router.push('/results');
+
+		for (const entry of formData.entries()) {
+			const [key, value] = entry;
+			console.log(`${key}: ${value}`);
+		}
 	};
 
 	return (
-		<section>
+		<section className={st.container}>
 			<form className={st.form} onSubmit={handleSubmit}>
 				<div className={st.labelsAndInputs}>
 					<label className={st.label} htmlFor="i1">
 						ИНН компании<span className={st.star}>*</span>
+						{/* <p className={st.incorrectValue}>Введите корректные данные</p> */}
 					</label>
 					<input
 						className={st.input}
@@ -40,6 +44,7 @@ export const BLockMain = () => {
 					<Tonality />
 					<label className={st.label} htmlFor="i3">
 						Количество документов в выдаче<span className={st.star}>*</span>
+						{/* <p className={st.incorrectValue}>Введите корректные данные</p> */}
 					</label>
 					<input
 						className={st.input}
@@ -52,6 +57,9 @@ export const BLockMain = () => {
 					/>
 					<label className={st.label}>
 						Диапазон поиска<span className={st.star}>*</span>
+						{/* <p className={st.anotherIncorrectValue}>
+							Введите корректные данные
+						</p> */}
 					</label>
 					<DateSelection />
 				</div>
@@ -69,6 +77,7 @@ export const BLockMain = () => {
 					<p className={st.underBtn}>* Обязательные к заполнению поля</p>
 				</div>
 			</form>
+			<Image className={st.imageGroup} src={imageGroupImg} alt="*" priority />
 		</section>
 	);
 };

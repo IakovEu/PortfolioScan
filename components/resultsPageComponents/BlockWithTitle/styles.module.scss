@@ -1,0 +1,25 @@
+.container {
+	margin-top: 25px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.titleAndTxt {
+		.title {
+			margin: 44px 0 36px;
+			font-family: 'Montserrat';
+			font-size: 40px;
+		}
+
+		.underTitle {
+			margin: 0;
+			font-weight: 400;
+			font-size: 20px;
+		}
+	}
+
+	.imageGroup {
+		margin-right: 15px;
+		user-select: none;
+	}
+}

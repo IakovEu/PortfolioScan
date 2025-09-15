@@ -2,7 +2,6 @@ import st from './styles.module.scss';
 import Image from 'next/image';
 import documentImg from '@/public/document.png';
 import foldersImg from '@/public/folders.png';
-import imageGroupImg from '@/public/imageGroup3.png'
 
 export const BlockWithTitle = () => {
 	return (
@@ -19,7 +18,6 @@ export const BlockWithTitle = () => {
 				</p>
 				<Image className={st.document} src={documentImg} alt="*" priority />
 				<Image className={st.folders} src={foldersImg} alt="*" priority />
-				<Image className={st.imageGroup} src={imageGroupImg} alt="*" priority />
 			</div>
 		</section>
 	);

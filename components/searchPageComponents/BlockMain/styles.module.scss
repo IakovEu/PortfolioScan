@@ -1,64 +1,59 @@
-.form {
+.container {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
-	margin-bottom: 64px;
-	padding: 21px 39px 32px 44px;
-	width: 872px;
-	height: 543px;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-	border-radius: 10px;
 
-	.labelsAndInputs {
+	.imageGroup {
+		user-select: none;
+		margin-right: -50px;
+	}
+
+	.form {
 		display: flex;
-		flex-direction: column;
+		justify-content: space-between;
+		margin-bottom: 64px;
+		padding: 21px 39px 32px 44px;
+		width: 872px;
+		height: 543px;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
 
-		.label {
-			font-size: 18px;
-			font-weight: 400;
-			margin-bottom: 20px;
-
-			.star {
-				font-size: 25px;
-			}
-		}
-
-		.input {
-			margin-bottom: 30px;
-			width: 242px;
-			height: 43px;
-			padding: 13px 17px;
-			border-radius: 5px;
-			border: 1px solid #c7c7c7;
-
-			&::placeholder {
-				font-size: 14px;
-				text-align: center;
-				color: #949494;
-			}
-
-			&:focus {
-				outline: none;
-				border: 1px solid #029491;
-			}
-		}
-		.chooseDate {
-			width: 372px;
+		.labelsAndInputs {
 			display: flex;
+			flex-direction: column;
 
-			.customInput {
+			.label {
 				position: relative;
-				width: 176px;
+				font-size: 18px;
+				font-weight: 400;
+				margin-bottom: 20px;
+
+				.star {
+					font-size: 25px;
+				}
+
+				.incorrectValue,
+				.anotherIncorrectValue {
+					margin: 0;
+					position: absolute;
+					bottom: -81px;
+					left: 19px;
+					color: #ff5959;
+					font-size: 14px;
+				}
+
+				.anotherIncorrectValue {
+					left: 85px;
+				}
+			}
+
+			.input {
+				margin-bottom: 30px;
+				width: 242px;
 				height: 43px;
 				padding: 13px 17px;
-				font-size: 16px;
-				font-size: 14px;
-				font-family: 'inter';
-				font-weight: 400;
 				border-radius: 5px;
 				border: 1px solid #c7c7c7;
-				cursor: pointer;
-				z-index: 2;
-				background-color: transparent;
 
 				&::placeholder {
 					font-size: 14px;
@@ -71,64 +66,95 @@
 					border: 1px solid #029491;
 				}
 			}
+			.chooseDate {
+				width: 372px;
+				display: flex;
 
-			.firstrectangle {
-				position: absolute;
-				bottom: 18px;
-				right: 29px;
-				rotate: 180deg;
-				z-index: 1;
-			}
+				.customInput {
+					position: relative;
+					width: 176px;
+					height: 43px;
+					padding: 13px 17px;
+					font-size: 16px;
+					font-size: 14px;
+					font-family: 'inter';
+					font-weight: 400;
+					border-radius: 5px;
+					border: 1px solid #c7c7c7;
+					cursor: pointer;
+					z-index: 2;
+					background-color: transparent;
 
-			.secondRectangle {
-				position: absolute;
-				bottom: 18px;
-				right: 8px;
-				rotate: 180deg;
-				z-index: 1;
-			}
+					&::placeholder {
+						font-size: 14px;
+						text-align: center;
+						color: #949494;
+					}
 
-			.rotateRectangle {
-				rotate: 360deg;
-				bottom: 13px;
-			}
+					&:focus {
+						outline: none;
+						border: 1px solid #029491;
+					}
+				}
 
-			.castomCalendar {
-				font-family: 'inter';
-				font-weight: 400;
-				font-size: 12px;
-			}
-		}
-	}
+				.firstrectangle {
+					position: absolute;
+					bottom: 18px;
+					right: 29px;
+					rotate: 180deg;
+					z-index: 1;
+				}
 
-	.checkboxAndSubmit {
-		padding-left: 20px;
+				.secondRectangle {
+					position: absolute;
+					bottom: 18px;
+					right: 8px;
+					rotate: 180deg;
+					z-index: 1;
+				}
 
-		.btnContainer {
-			margin: 157px 0 10px;
-			text-align: end;
+				.rotateRectangle {
+					rotate: 360deg;
+					bottom: 13px;
+				}
 
-			.submitBtn {
-				width: 305px;
-				height: 59px;
-				background-color: #5970ff;
-				font-family: 'inter';
-				font-weight: 500;
-				font-size: 22px;
-				border-radius: 5px;
-
-				&:hover{
-					background-color: #FFB64F;
+				.castomCalendar {
+					font-family: 'inter';
+					font-weight: 400;
+					font-size: 12px;
 				}
 			}
 		}
 
-		.underBtn {
-			color: #949494;
-			margin: 0;
-			text-align: end;
-			font-size: 14px;
-			font-weight: 400;
+		.checkboxAndSubmit {
+			padding-left: 20px;
+
+			.btnContainer {
+				margin: 157px 0 10px;
+				text-align: end;
+
+				.submitBtn {
+					width: 305px;
+					height: 59px;
+					background-color: #5970ff;
+					font-family: 'inter';
+					font-weight: 500;
+					font-size: 22px;
+					border-radius: 5px;
+
+					&:hover {
+						background-color: #ffb64f;
+					}
+				}
+			}
+
+			.underBtn {
+				color: #949494;
+				margin: 0;
+				text-align: end;
+				font-size: 14px;
+				font-weight: 400;
+			}
 		}
 	}
 }
