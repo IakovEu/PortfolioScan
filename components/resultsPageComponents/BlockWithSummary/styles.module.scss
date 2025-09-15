@@ -21,29 +21,6 @@
 		align-items: center;
 		margin-bottom: 107px;
 
-		.fixedSlide {
-			padding: 17px 28px;
-			position: absolute;
-			top: 0;
-			left: 40px;
-			width: 133px;
-			height: 158px;
-			background-color: #029491;
-			color: #ffffff;
-			border-top-left-radius: 10px;
-			border-bottom-left-radius: 10px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			z-index: 2;
-
-			.categories {
-				margin: 0;
-				font-size: 20px;
-				font-weight: 500;
-			}
-		}
-
 		.customNext,
 		.customPrev {
 			cursor: pointer;
@@ -53,10 +30,33 @@
 
 		.carousel {
 			padding: 17px 21px 17px 132px;
-			max-width: 1260px;
+			width: 100%;
 			height: 158px;
 			border: 2px solid #029491;
 			border-radius: 10px;
+
+			.fixedSlide {
+				padding: 17px 28px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 133px;
+				height: 158px;
+				background-color: #029491;
+				color: #ffffff;
+				border-top-left-radius: 10px;
+				border-bottom-left-radius: 10px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				z-index: 2;
+
+				.categories {
+					margin: 0;
+					font-size: 20px;
+					font-weight: 500;
+				}
+			}
 
 			.slide {
 				text-align: center;
@@ -71,6 +71,21 @@
 					font-size: 18px;
 					font-weight: 400;
 				}
+			}
+
+			.loader {
+				position: absolute;
+				top: 30px;
+				right: 50%;
+				color: #029491;
+			}
+
+			.underLoader {
+				position: absolute;
+				top: 70px;
+				right: 45%;
+				font-weight: 400;
+				font-size: 18px;
 			}
 		}
 	}
