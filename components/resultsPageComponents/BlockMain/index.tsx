@@ -1,7 +1,7 @@
 import st from './styles.module.scss';
 import Link from 'next/link';
 import { Button } from '@mui/material';
-import { sx } from '@/staticData';
+import { sx } from '@/store/staticData';
 
 export const BlockMain = () => {
 	return (

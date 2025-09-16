@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Montserrat } from 'next/font/google';
 import clsx from 'clsx';
+import ClientProviderWrapper from '@/components/ClientProviderWrapper';
 
 export const metadata: Metadata = {
 	title: 'Scan',
@@ -32,7 +33,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={clsx(montserrat.className, inter.className)}>
-				{children}
+				<ClientProviderWrapper>{children}</ClientProviderWrapper>
 			</body>
 		</html>
 	);

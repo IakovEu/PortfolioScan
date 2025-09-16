@@ -3,7 +3,7 @@ import st from './styles.module.scss';
 import Image from 'next/image';
 import checkMark from '@/public/checkMark.svg';
 import Button from '@mui/material/Button';
-import { dataCards, sx } from '@/staticData';
+import { dataCards, sx } from '@/store/staticData';
 
 export const BlockWithTariffs = () => {
 	const active = 0;

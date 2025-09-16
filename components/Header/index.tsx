@@ -5,7 +5,7 @@ import Link from 'next/link';
 import logo from '@/public/logo.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
-import { sx } from '@/staticData';
+import { sx } from '@/store/staticData';
 
 export const Header = () => {
 	const router = useRouter();

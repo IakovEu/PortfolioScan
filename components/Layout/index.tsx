@@ -7,8 +7,8 @@ export const Layout = ({ children }: PropsWithChildren) => {
 	return (
 		<>
 			<Header />
-			<main>
-				<div className={st.container}>{children}</div>
+			<main className={st.main}>
+				{children}
 			</main>
 			<Footer />
 		</>

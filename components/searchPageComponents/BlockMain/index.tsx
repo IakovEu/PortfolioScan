@@ -1,7 +1,7 @@
 'use client';
 import st from './styles.module.scss';
 import Button from '@mui/material/Button';
-import { sx } from '@/staticData';
+import { sx } from '@/store/staticData';
 import { Tonality } from './tonality';
 import { DateSelection } from './dateSelection';
 import { Checkboxes } from './checkboxes';

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import image from '@/public/mainPage-1.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
-import { sx } from '@/staticData';
+import { sx } from '@/store/staticData';
 
 export const BlockWithTitle = () => {
 	const router = useRouter();

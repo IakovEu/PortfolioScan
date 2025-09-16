@@ -3,7 +3,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CheckIcon from '@mui/icons-material/Check';
 import { styled } from '@mui/material/styles';
-import { dataCheckboxes } from '@/staticData';
+import { dataCheckboxes } from '@/store/staticData';
 
 export const Checkboxes = () => {
 	const initiallyUnchecked = new Set([3, 4, 6]);
