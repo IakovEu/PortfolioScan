@@ -70,7 +70,8 @@
 	}
 
 	.firstIncorrectValue,
-	.secondIncorrectValue {
+	.secondIncorrectValue,
+	.thirdIncorrectValue {
 		margin: 0;
 		font-weight: 400;
 		font-size: 12px;
@@ -86,7 +87,12 @@
 
 	.secondIncorrectValue {
 		top: 274px;
-		left: 130px;
+		left: 115px;
+	}
+
+	.thirdIncorrectValue{
+		top: 274px;
+		left: 65px;
 	}
 
 	.activateIncorrectValue {

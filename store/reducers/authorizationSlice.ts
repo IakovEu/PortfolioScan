@@ -1,17 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	loginOrRegister: 'login',
+	accessToken: '',
+	expire: '',
 };
 
 export const authorizationSlice = createSlice({
 	name: 'authorization',
 	initialState,
 	reducers: {
-		setClickedBtn: (state, action) => {
-			state.loginOrRegister = action.payload;
+		setTokenData: (state, action) => {
+			state.accessToken = action.payload.accessToken;
+			state.expire = action.payload.expire;
+		},
+		deleteTokenData: (state) => {
+			state.accessToken = '';
+			state.expire = '';
 		},
 	},
 });
 
-export const { setClickedBtn } = authorizationSlice.actions;
+export const { setTokenData, deleteTokenData } = authorizationSlice.actions;

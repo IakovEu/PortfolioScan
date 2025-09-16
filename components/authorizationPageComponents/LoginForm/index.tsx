@@ -11,15 +11,48 @@ import facebookImg from '@/public/facebook.svg';
 import yandexImg from '@/public/yandex.svg';
 import lockImg from '@/public/lock.svg';
 import { sx } from '@/store/staticData';
+import axios from 'axios';
+import {
+	loginValidator,
+	passwordValidator,
+} from '@/helpers/logAndPassValidators';
+import { useDispatch } from 'react-redux';
+import { RootDispatch } from '@/store/reducers/store';
+import { setTokenData } from '@/store/reducers/authorizationSlice';
+import { useRouter } from 'next/navigation';
 
 export const LoginForm = () => {
+	const dispatch = useDispatch<RootDispatch>();
 	const pathname = usePathname();
+	const router = useRouter();
 	const [activeBtn, setActiveBtn] = useState<string | null>(null);
-	const [password, setPassword] = useState('');
-	const [phone, setPhone] = useState('');
+	const [password, setPassword] = useState<string>('');
+	const [login, setLogin] = useState<string>('');
+	const [error, setError] = useState<boolean>(false);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		const sendData = async () => {
+			try {
+				const response = await axios.post(
+					'https://gateway.scan-interfax.ru/api/v1/account/login',
+					{
+						login: login,
+						password: password,
+					}
+				);
+				setError(false);
+				dispatch(setTokenData(response.data));
+				console.log(response.data);
+				router.push('/');
+			} catch (e) {
+				setError(true);
+				console.log(e);
+			}
+		};
+
+		sendData();
 	};
 
 	useEffect(() => {
@@ -65,12 +98,12 @@ export const LoginForm = () => {
 							[st.incorrectInput]: 0,
 						})}
 						type="tel"
-						value={phone}
-						onChange={(e) => setPhone(e.target.value)}
+						value={login}
+						onChange={(e) => setLogin(e.target.value)}
 					/>
 					<p
 						className={clsx(st.firstIncorrectValue, {
-							[st.activateIncorrectValue]: 0,
+							[st.activateIncorrectValue]: loginValidator(login),
 						})}>
 						Введите корректные данные
 					</p>
@@ -88,16 +121,23 @@ export const LoginForm = () => {
 					/>
 					<p
 						className={clsx(st.secondIncorrectValue, {
-							[st.activateIncorrectValue]: 0,
+							[st.activateIncorrectValue]: error,
 						})}>
-						Неправильный пароль
+						Неправильный логин или пароль
+					</p>
+					<p
+						className={clsx(st.thirdIncorrectValue, {
+							[st.activateIncorrectValue]:
+								!error && passwordValidator(password),
+						})}>
+						Пароль должен состоять минимум из 6 символов
 					</p>
 					<Button
 						className={st.btnSubmit}
 						sx={sx}
 						type="submit"
 						variant="contained"
-						disabled={true}>
+						disabled={false}>
 						Войти
 					</Button>
 					<div className={st.linkRecoverContainer}>
