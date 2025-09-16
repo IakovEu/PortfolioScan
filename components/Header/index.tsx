@@ -29,10 +29,10 @@ export const Header = () => {
 				</nav>
 				<div className={st.authorization}>
 					<Button
-						className={st.register}
+						className={st.btnRegister}
 						sx={sx}
 						onClick={() => {
-							router.push('/authorization');
+							router.push('/authorization/register');
 						}}>
 						Зарегистрироваться
 					</Button>
@@ -41,7 +41,7 @@ export const Header = () => {
 						className={st.btnAuthorize}
 						sx={sx}
 						onClick={() => {
-							router.push('/authorization');
+							router.push('/authorization/login');
 						}}>
 						Войти
 					</Button>

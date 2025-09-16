@@ -9,16 +9,16 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist';
-import { exampleSlice } from './exampleSlice';
+import { authorizationSlice } from './authorizationSlice';
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: [],
+	whitelist: ['authorization'],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
-	example: exampleSlice.reducer,
+	authorization: authorizationSlice.reducer,
 });
 
 export const store = configureStore({

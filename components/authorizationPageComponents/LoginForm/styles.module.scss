@@ -13,8 +13,8 @@
 		justify-content: space-between;
 		gap: 15px;
 
-		.login,
-		.register {
+		.loginBtn,
+		.registerBtn {
 			border-bottom: 2px solid #c7c7c7;
 			border-radius: 0;
 			color: #c7c7c7;
@@ -23,11 +23,11 @@
 			font-weight: 400;
 		}
 
-		.login {
+		.loginBtn {
 			padding: 0 51px 3px;
 		}
 
-		.register {
+		.registerBtn {
 			padding: 0 21px 3px;
 		}
 
@@ -152,5 +152,11 @@
 		top: -55px;
 		left: -52px;
 		user-select: none;
+	}
+
+	.register {
+		margin: 180px 0 50px;
+		font-weight: 400;
+		text-align: center;
 	}
 }
