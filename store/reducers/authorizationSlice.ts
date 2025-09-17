@@ -4,16 +4,14 @@ interface Initial {
 	isAuthorized: boolean;
 	accessToken: string;
 	expire: string;
-	usedCompany: number;
-	companyLimit: number;
+	activeTariff: 0 | 1 | 2;
 }
 
 const initialState: Initial = {
 	isAuthorized: false,
 	accessToken: '',
 	expire: '',
-	usedCompany: 0,
-	companyLimit: 0,
+	activeTariff: 1,
 };
 
 export const authorizationSlice = createSlice({
@@ -24,13 +22,20 @@ export const authorizationSlice = createSlice({
 			state.accessToken = action.payload.accessToken;
 			state.expire = action.payload.expire;
 			state.isAuthorized = true;
+			// симуляция назначения тарифа
+			state.activeTariff = Math.floor(Math.random() * 3) as 0 | 1 | 2;
 		},
 		deleteTokenData: (state) => {
 			state.accessToken = '';
 			state.expire = '';
 			state.isAuthorized = false;
 		},
+		// По логике он должен быть но апи для получения тарифа пользователя нет
+		setActiveTariff: (state, action) => {
+			state.activeTariff = action.payload;
+		},
 	},
 });
 
-export const { setTokenData, deleteTokenData } = authorizationSlice.actions;
+export const { setTokenData, deleteTokenData, setActiveTariff } =
+	authorizationSlice.actions;

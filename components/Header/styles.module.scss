@@ -28,13 +28,15 @@
 	}
 
 	.limitAndAuthorized {
+		position: relative;
 		display: flex;
 		justify-content: space-between;
-		width: 435px;
+		align-items: center;
 
 		.limit {
-			margin-left: 20px;
-			position: relative;
+			position: absolute;
+			// top: 0;
+			right: 200px;
 			width: 175px;
 			height: 63px;
 			background-color: #d9d9d9;
@@ -62,12 +64,15 @@
 					color: #8ac540;
 				}
 			}
+			.loaderContainer {
+				position: relative;
 
-			.loader {
-				position: absolute;
-				top: 15px;
-				left: 73px;
-				color: #029491;
+				.loader {
+					position: absolute;
+					top: 15px;
+					left: 73px;
+					color: #029491;
+				}
 			}
 		}
 

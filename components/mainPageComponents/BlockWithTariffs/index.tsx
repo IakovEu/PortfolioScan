@@ -1,12 +1,23 @@
+'use client';
 import clsx from 'clsx';
 import st from './styles.module.scss';
 import Image from 'next/image';
 import checkMark from '@/public/checkMark.svg';
 import Button from '@mui/material/Button';
 import { dataCards, sx } from '@/store/staticData';
+import { RootState } from '@/store/reducers/store';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 export const BlockWithTariffs = () => {
-	const active = 0;
+	const router = useRouter();
+	const isAuthorized = useSelector(
+		(state: RootState) => state.authorization.isAuthorized
+	);
+	const activeTariff = useSelector(
+		(state: RootState) => state.authorization.activeTariff
+	);
+
 	return (
 		<section>
 			<h2 className={st.subTitle}>НАШИ ТАРИФЫ</h2>
@@ -15,7 +26,7 @@ export const BlockWithTariffs = () => {
 					return (
 						<div
 							className={clsx(st.card, {
-								[st[el.activeStyle]]: active === ind,
+								[st[el.activeStyle]]: activeTariff === ind && isAuthorized,
 							})}
 							key={ind}>
 							<div className={clsx(st.cardTop, st[el.cardTop])}>
@@ -49,8 +60,14 @@ export const BlockWithTariffs = () => {
 								</div>
 							</div>
 							<div className={st.btnBlock}>
-								{active === ind ? (
-									<Button className={st.activeBtn} variant="contained" sx={sx}>
+								{activeTariff === ind && isAuthorized ? (
+									<Button
+										className={st.activeBtn}
+										variant="contained"
+										sx={sx}
+										onClick={() => {
+											router.push('/account');
+										}}>
 										Перейти в личный кабинет
 									</Button>
 								) : (
@@ -59,7 +76,7 @@ export const BlockWithTariffs = () => {
 									</Button>
 								)}
 							</div>
-							{active === ind && (
+							{activeTariff === ind && isAuthorized && (
 								<div className={st.currentTariff}>Текущий тариф</div>
 							)}
 						</div>

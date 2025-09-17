@@ -37,7 +37,8 @@ export const Header = () => {
 							},
 						}
 					);
-
+					// нет смысла выносить в редакс, тк эти данные используются только в этом компоненте, записывать
+					// в редакс чтобы сохранить в локал сторейдж тоже, тк данные должны часто обновляться
 					setUsedCompanies(response.data.eventFiltersInfo.usedCompanyCount);
 					setLimit(response.data.eventFiltersInfo.companyLimit);
 				} catch (e) {
@@ -79,11 +80,13 @@ export const Header = () => {
 									</p>
 								</>
 							) : (
-								<CircularProgress
-									className={st.loader}
-									thickness={3}
-									size={30}
-								/>
+								<div className={st.loaderContainer}>
+									<CircularProgress
+										className={st.loader}
+										thickness={3}
+										size={30}
+									/>
+								</div>
 							)}
 						</div>
 						<div className={st.authorizedUser}>
@@ -94,6 +97,7 @@ export const Header = () => {
 									sx={sx}
 									onClick={() => {
 										dispatch(deleteTokenData());
+										router.push('/');
 									}}>
 									Выйти
 								</Button>
