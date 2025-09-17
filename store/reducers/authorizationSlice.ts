@@ -4,12 +4,16 @@ interface Initial {
 	isAuthorized: boolean;
 	accessToken: string;
 	expire: string;
+	usedCompany: number;
+	companyLimit: number;
 }
 
 const initialState: Initial = {
 	isAuthorized: false,
 	accessToken: '',
 	expire: '',
+	usedCompany: 0,
+	companyLimit: 0,
 };
 
 export const authorizationSlice = createSlice({

@@ -47,7 +47,6 @@ export const LoginForm = () => {
 					);
 					setError(false);
 					dispatch(setTokenData(response.data));
-					console.log(response.data);
 					router.push('/');
 				} else {
 					setError(true);
