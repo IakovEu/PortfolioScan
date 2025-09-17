@@ -5,8 +5,13 @@ import image from '@/public/mainPage-1.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
 import { sx } from '@/store/staticData';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/reducers/store';
 
 export const BlockWithTitle = () => {
+	const isAuthorized = useSelector(
+		(state: RootState) => state.authorization.isAuthorized
+	);
 	const router = useRouter();
 
 	return (
@@ -20,15 +25,17 @@ export const BlockWithTitle = () => {
 					Комплексный анализ публикаций, получение данных <br /> в формате PDF
 					на электронную почту.
 				</p>
-				<Button
-					className={st.requestBtn}
-					variant="contained"
-					sx={sx}
-					onClick={() => {
-						router.push('/search');
-					}}>
-					Запросить данные
-				</Button>
+				{isAuthorized && (
+					<Button
+						className={st.requestBtn}
+						variant="contained"
+						sx={sx}
+						onClick={() => {
+							router.push('/search');
+						}}>
+						Запросить данные
+					</Button>
+				)}
 			</div>
 			<Image className={st.image} src={image} alt="*" priority />
 		</section>

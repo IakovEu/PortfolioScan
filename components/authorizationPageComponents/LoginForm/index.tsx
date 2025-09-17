@@ -32,20 +32,26 @@ export const LoginForm = () => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
+		// Я показываю, как войти в приложение на вкладке Зарегистрироваться, чтобы любой, без реальных логина и пароля мог войти,
+		// но чтобы не показывать реальные данные для входа, я их спрятал и вход осуществляется по выдуманным данным
 		const sendData = async () => {
 			try {
-				const response = await axios.post(
-					'https://gateway.scan-interfax.ru/api/v1/account/login',
-					{
-						login: login,
-						password: password,
-					}
-				);
-				setError(false);
-				dispatch(setTokenData(response.data));
-				console.log(response.data);
-				router.push('/');
+				if (login === 'bebra1' && password === '000111') {
+					const response = await axios.post(
+						'https://gateway.scan-interfax.ru/api/v1/account/login',
+						{
+							login: process.env.NEXT_PUBLIC_LOGIN || process.env.APP_LOGIN,
+							password:
+								process.env.NEXT_PUBLIC_PASSWORD || process.env.APP_PASSWORD,
+						}
+					);
+					setError(false);
+					dispatch(setTokenData(response.data));
+					console.log(response.data);
+					router.push('/');
+				} else {
+					setError(true);
+				}
 			} catch (e) {
 				setError(true);
 				console.log(e);
@@ -137,7 +143,7 @@ export const LoginForm = () => {
 						sx={sx}
 						type="submit"
 						variant="contained"
-						disabled={false}>
+						disabled={login.length === 0 || password.length === 0}>
 						Войти
 					</Button>
 					<div className={st.linkRecoverContainer}>
@@ -162,8 +168,8 @@ export const LoginForm = () => {
 				<div className={st.register}>
 					Функционал регистрации новых пользователей ещё не был добавлен.
 					<br /> <br />
-					Логин: sf_student1 <br />
-					Пароль: 4i2385j
+					Логин: bebra1 <br />
+					Пароль: 000111
 				</div>
 			)}
 			<Image className={st.lock} src={lockImg} alt="*" />
