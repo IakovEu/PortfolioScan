@@ -1,11 +1,5 @@
+import { InitialAuthorizationState } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
-
-interface InitialAuthorizationState {
-	isAuthorized: boolean;
-	accessToken: string;
-	expire: string;
-	activeTariff: 0 | 1 | 2;
-}
 
 const initialState: InitialAuthorizationState = {
 	isAuthorized: false,

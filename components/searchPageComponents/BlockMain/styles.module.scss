@@ -32,6 +32,10 @@
 					font-size: 25px;
 				}
 
+				.redStar {
+					color: #ff5959;
+				}
+
 				.incorrectValue,
 				.anotherIncorrectValue,
 				.oneMoreIncrorrectValue {
@@ -149,6 +153,11 @@
 
 					&:hover {
 						background-color: #ffb64f;
+					}
+
+					&:disabled {
+						background-color: #596fff7f;
+						color: #ffffff;
 					}
 				}
 			}

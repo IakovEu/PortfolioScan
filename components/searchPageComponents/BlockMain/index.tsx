@@ -10,33 +10,48 @@ import Image from 'next/image';
 import imageGroupImg from '@/public/imageGroup3.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootDispatch, RootState } from '@/store/reducers/store';
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	clearPreviousResults,
 	setInnAndLimit,
 } from '@/store/reducers/searchFormAnswersSlice';
+import { innValidator, limitValidator } from '@/helpers/innAndLimitValidators';
+import clsx from 'clsx';
+import { dateValidator } from '@/helpers/dateValidator';
 
 export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
-	const inn = useRef<HTMLInputElement>(null);
-	const limit = useRef<HTMLInputElement>(null);
+	const [inn, setInn] = useState<string | null>(null);
+	const [limit, setLimit] = useState<string | null>(null);
 	const isAuthorized = useSelector(
 		(state: RootState) => state.authorization.isAuthorized
+	);
+	const sDate = useSelector(
+		(state: RootState) => state.searchConfiguration.sDate
+	);
+	const eDate = useSelector(
+		(state: RootState) => state.searchConfiguration.eDate
 	);
 	const router = useRouter();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (inn.current?.value && limit.current?.value) {
-			dispatch(
-				setInnAndLimit({
-					inn: +inn.current?.value,
-					limit: +limit.current?.value,
-				})
-			);
+		if (inn && limit && sDate && eDate) {
+			if (
+				innValidator(inn) &&
+				limitValidator(limit) &&
+				dateValidator(sDate, eDate)
+			) {
+				dispatch(
+					setInnAndLimit({
+						inn: +inn,
+						limit: +limit,
+					})
+				);
+				router.push('/results');
+			}
 		}
-		router.push('/results');
 	};
 
 	useEffect(() => {
@@ -51,11 +66,21 @@ export const BLockMain = () => {
 			<form className={st.form} onSubmit={handleSubmit}>
 				<div className={st.labelsAndInputs}>
 					<label className={st.label} htmlFor="i1">
-						ИНН компании<span className={st.star}>*</span>
-						{/* <p className={st.incorrectValue}>Введите корректные данные</p> */}
+						ИНН компании
+						<span
+							className={clsx(st.star, {
+								[st.redStar]: inn !== null && !innValidator(inn),
+							})}>
+							*
+						</span>
+						{inn !== null && !innValidator(inn) && (
+							<p className={st.incorrectValue}>Введите корректные данные</p>
+						)}
 					</label>
 					<input
-						ref={inn}
+						onChange={(e) => {
+							setInn(e.target.value);
+						}}
 						className={st.input}
 						id="i1"
 						name="inn"
@@ -66,12 +91,26 @@ export const BLockMain = () => {
 					<label className={st.label}>Тональность</label>
 					<Tonality />
 					<label className={st.label} htmlFor="i3">
-						Количество документов в выдаче<span className={st.star}>*</span>
-						{/* <p className={st.incorrectValue}>Введите корректные данные</p>
-						<p className={st.oneMoreIncrorrectValue}>Обязательное поле</p> */}
+						Количество документов в выдаче
+						<span
+							className={clsx(st.star, {
+								[st.redStar]:
+									(limit !== null && !limitValidator(limit)) ||
+									(limit !== null && limit.length === 0),
+							})}>
+							*
+						</span>
+						{limit !== null && limit.length === 0 && (
+							<p className={st.oneMoreIncrorrectValue}>Обязательное поле</p>
+						)}
+						{limit !== null && !limitValidator(limit) && (
+							<p className={st.incorrectValue}>Введите корректные данные</p>
+						)}
 					</label>
 					<input
-						ref={limit}
+						onChange={(e) => {
+							setLimit(e.target.value);
+						}}
 						className={st.input}
 						id="i3"
 						name="limit"
@@ -81,10 +120,18 @@ export const BLockMain = () => {
 						style={{ marginBottom: '39px' }}
 					/>
 					<label className={st.label}>
-						Диапазон поиска<span className={st.star}>*</span>
-						{/* <p className={st.anotherIncorrectValue}>
-							Введите корректные данные
-						</p> */}
+						Диапазон поиска
+						<span
+							className={clsx(st.star, {
+								[st.redStar]: sDate && eDate && !dateValidator(sDate, eDate),
+							})}>
+							*
+						</span>
+						{sDate && eDate && !dateValidator(sDate, eDate) && (
+							<p className={st.anotherIncorrectValue}>
+								Введите корректные данные
+							</p>
+						)}
 					</label>
 					<DateSelection />
 				</div>
@@ -95,7 +142,12 @@ export const BLockMain = () => {
 							className={st.submitBtn}
 							type="submit"
 							variant="contained"
-							sx={sx}>
+							sx={sx}
+							disabled={
+								!innValidator(inn) ||
+								!limitValidator(limit) ||
+								!dateValidator(sDate, eDate)
+							}>
 							Поиск
 						</Button>
 					</div>

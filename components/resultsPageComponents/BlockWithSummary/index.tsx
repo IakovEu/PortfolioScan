@@ -21,7 +21,6 @@ export const BlockWithSummary = () => {
 	const configuration = useSelector(
 		(state: RootState) => state.searchConfiguration
 	);
-	// console.log(configuration);
 
 	const getHistograms = async () => {
 		const headers = {
@@ -46,7 +45,7 @@ export const BlockWithSummary = () => {
 	useEffect(() => {
 		getHistograms();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [configuration]);
 
 	return (
 		<section className={st.container}>

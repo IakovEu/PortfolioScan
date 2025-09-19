@@ -1,21 +1,5 @@
+import { InitialSearchState } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
-
-export interface InitialSearchState {
-	sDate: string;
-	eDate: string;
-	inn: number;
-	limit: number;
-	tonality: string;
-	checkboxes: {
-		mFullness: boolean;
-		inBusiness: boolean;
-		mainRole: boolean;
-		riskFactors: boolean;
-		excludeTechNews: boolean;
-		excludeAnnouncements: boolean;
-		excludeDigests: boolean;
-	};
-}
 
 const initialState: InitialSearchState = {
 	sDate: '',
