@@ -33,7 +33,8 @@
 				}
 
 				.incorrectValue,
-				.anotherIncorrectValue {
+				.anotherIncorrectValue,
+				.oneMoreIncrorrectValue {
 					margin: 0;
 					position: absolute;
 					bottom: -81px;
@@ -44,6 +45,10 @@
 
 				.anotherIncorrectValue {
 					left: 85px;
+				}
+
+				.oneMoreIncrorrectValue {
+					left: 52px;
 				}
 			}
 

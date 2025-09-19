@@ -8,21 +8,43 @@ import { Checkboxes } from './checkboxes';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import imageGroupImg from '@/public/imageGroup3.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootDispatch, RootState } from '@/store/reducers/store';
+import { useEffect, useRef } from 'react';
+import {
+	clearPreviousResults,
+	setInnAndLimit,
+} from '@/store/reducers/searchFormAnswersSlice';
 
 export const BLockMain = () => {
+	const dispatch = useDispatch<RootDispatch>();
+	const inn = useRef<HTMLInputElement>(null);
+	const limit = useRef<HTMLInputElement>(null);
+	const isAuthorized = useSelector(
+		(state: RootState) => state.authorization.isAuthorized
+	);
 	const router = useRouter();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
 
-		router.push('/results');
-
-		for (const entry of formData.entries()) {
-			const [key, value] = entry;
-			console.log(`${key}: ${value}`);
+		if (inn.current?.value && limit.current?.value) {
+			dispatch(
+				setInnAndLimit({
+					inn: +inn.current?.value,
+					limit: +limit.current?.value,
+				})
+			);
 		}
+		router.push('/results');
 	};
+
+	useEffect(() => {
+		if (!isAuthorized) {
+			router.push('/');
+		}
+		dispatch(clearPreviousResults());
+	}, [dispatch, isAuthorized, router]);
 
 	return (
 		<section className={st.container}>
@@ -33,6 +55,7 @@ export const BLockMain = () => {
 						{/* <p className={st.incorrectValue}>Введите корректные данные</p> */}
 					</label>
 					<input
+						ref={inn}
 						className={st.input}
 						id="i1"
 						name="inn"
@@ -44,12 +67,14 @@ export const BLockMain = () => {
 					<Tonality />
 					<label className={st.label} htmlFor="i3">
 						Количество документов в выдаче<span className={st.star}>*</span>
-						{/* <p className={st.incorrectValue}>Введите корректные данные</p> */}
+						{/* <p className={st.incorrectValue}>Введите корректные данные</p>
+						<p className={st.oneMoreIncrorrectValue}>Обязательное поле</p> */}
 					</label>
 					<input
+						ref={limit}
 						className={st.input}
 						id="i3"
-						name="docCount"
+						name="limit"
 						type="number"
 						min={1}
 						placeholder="От 1 до 1000"

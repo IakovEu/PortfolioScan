@@ -10,15 +10,17 @@ import {
 	REGISTER,
 } from 'redux-persist';
 import { authorizationSlice } from './authorizationSlice';
+import { searchConfigurationSlice } from './searchFormAnswersSlice';
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['authorization'],
+	whitelist: ['authorization', 'searchConfiguration'],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
 	authorization: authorizationSlice.reducer,
+	searchConfiguration: searchConfigurationSlice.reducer,
 });
 
 export const store = configureStore({

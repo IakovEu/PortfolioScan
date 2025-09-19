@@ -10,6 +10,39 @@ import rightArrow from '@/public/rightArrow.svg';
 import CircularProgress from '@mui/material/CircularProgress';
 
 export const BlockWithSummary = () => {
+	// const getHistograms = async () => {
+	// 	const headers = {
+	// 		Authorization: `Bearer ${accessToken}`,
+	// 	};
+
+	// 	const body = createBody(
+	// 		'19.01.2019',
+	// 		'29.09.2025',
+	// 		7710137066,
+	// 		true,
+	// 		true,
+	// 		true,
+	// 		false,
+	// 		true,
+	// 		true,
+	// 		true,
+	// 		1000,
+	// 		'any'
+	// 	);
+
+	// 	try {
+	// 		const response = await axios.post(
+	// 			'https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
+	// 			body,
+	// 			{ headers }
+	// 		);
+
+	// 		console.log(response.data);
+	// 	} catch (e) {
+	// 		console.log(e);
+	// 	}
+	// };
+
 	return (
 		<section className={st.container}>
 			<h2 className={st.subTitle}>ОБЩАЯ СВОДКА</h2>

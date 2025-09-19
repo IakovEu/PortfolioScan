@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import CheckIcon from '@mui/icons-material/Check';
 import { styled } from '@mui/material/styles';
 import { dataCheckboxes } from '@/store/staticData';
+import { useDispatch } from 'react-redux';
+import { RootDispatch } from '@/store/reducers/store';
+import { setCheckboxes } from '@/store/reducers/searchFormAnswersSlice';
 
 export const Checkboxes = () => {
+	const dispatch = useDispatch<RootDispatch>();
 	const initiallyUnchecked = new Set([3, 4, 6]);
 	const [checkedState, setCheckedState] = useState(() =>
 		dataCheckboxes.map((_, ind) => (initiallyUnchecked.has(ind) ? false : true))
@@ -18,18 +22,20 @@ export const Checkboxes = () => {
 			setCheckedState(newCheckedState);
 		};
 
+	useEffect(() => {
+		dispatch(setCheckboxes(checkedState));
+	}, [checkedState, dispatch]);
+
 	return (
 		<div>
 			{dataCheckboxes.map((el, ind) => {
-				const checked = checkedState[ind];
-
 				return (
 					<FormControlLabel
 						key={ind}
 						control={
 							<Checkbox
 								name={el[1]}
-								checked={checked}
+								checked={checkedState[ind]}
 								onChange={handleChange(ind)}
 								icon={<CustomIcon checked={false} />}
 								checkedIcon={
@@ -53,7 +59,7 @@ export const Checkboxes = () => {
 								margin: '15px 0 0 17px',
 								whiteSpace: 'nowrap',
 								height: '22px',
-								color: checked ? '#000000' : '#949494',
+								color: checkedState[ind] ? '#000000' : '#949494',
 							},
 						}}
 					/>

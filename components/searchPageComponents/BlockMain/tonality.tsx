@@ -7,13 +7,18 @@ import { useState } from 'react';
 import rectangleIcon from '@/public/rectangleIcon.svg';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { RootDispatch } from '@/store/reducers/store';
+import { setTonality } from '@/store/reducers/searchFormAnswersSlice';
 
 export const Tonality = () => {
+	const dispatch = useDispatch<RootDispatch>();
 	const [ton, setTon] = useState('Любая');
 	const [rotate, setRotate] = useState(false);
 
 	const handleChange = (event: SelectChangeEvent) => {
-		setTon(event.target.value as string);
+		setTon(event.target.value);
+		dispatch(setTonality(event.target.value));
 	};
 
 	return (

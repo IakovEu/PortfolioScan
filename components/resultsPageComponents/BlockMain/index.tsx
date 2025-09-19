@@ -1,9 +1,25 @@
+'use client';
 import st from './styles.module.scss';
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import { sx } from '@/store/staticData';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/reducers/store';
+import { useRouter } from 'next/navigation';
 
 export const BlockMain = () => {
+	const isAuthorized = useSelector(
+		(state: RootState) => state.authorization.isAuthorized
+	);
+	const router = useRouter();
+
+	useEffect(() => {
+		if (!isAuthorized) {
+			router.push('/');
+		}
+	}, [isAuthorized, router]);
+
 	return (
 		<section className={st.container}>
 			<h2 className={st.subTitle}>СПИСОК ДОКУМЕНТОВ</h2>
