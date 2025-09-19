@@ -20,7 +20,7 @@ export interface InitialSearchState {
 const initialState: InitialSearchState = {
 	sDate: '',
 	eDate: '',
-	tonality: '',
+	tonality: 'Любая',
 	inn: 0,
 	limit: 0,
 	checkboxes: {

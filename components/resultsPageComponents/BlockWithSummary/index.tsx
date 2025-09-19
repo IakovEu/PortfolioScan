@@ -8,40 +8,45 @@ import Image from 'next/image';
 import leftArrow from '@/public/leftArrow.svg';
 import rightArrow from '@/public/rightArrow.svg';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/reducers/store';
+import { createBody } from '@/helpers/createBodyForRequest';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 export const BlockWithSummary = () => {
-	// const getHistograms = async () => {
-	// 	const headers = {
-	// 		Authorization: `Bearer ${accessToken}`,
-	// 	};
+	const accessToken = useSelector(
+		(state: RootState) => state.authorization.accessToken
+	);
+	const configuration = useSelector(
+		(state: RootState) => state.searchConfiguration
+	);
+	// console.log(configuration);
 
-	// 	const body = createBody(
-	// 		'19.01.2019',
-	// 		'29.09.2025',
-	// 		7710137066,
-	// 		true,
-	// 		true,
-	// 		true,
-	// 		false,
-	// 		true,
-	// 		true,
-	// 		true,
-	// 		1000,
-	// 		'any'
-	// 	);
+	const getHistograms = async () => {
+		const headers = {
+			Authorization: `Bearer ${accessToken}`,
+		};
 
-	// 	try {
-	// 		const response = await axios.post(
-	// 			'https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
-	// 			body,
-	// 			{ headers }
-	// 		);
+		const body = createBody({ ...configuration, ...configuration.checkboxes });
 
-	// 		console.log(response.data);
-	// 	} catch (e) {
-	// 		console.log(e);
-	// 	}
-	// };
+		try {
+			const response = await axios.post(
+				'https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
+				body,
+				{ headers }
+			);
+
+			console.log(response.data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
+		getHistograms();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<section className={st.container}>

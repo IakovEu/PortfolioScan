@@ -1,3 +1,5 @@
+import { BodyArgs } from '@/types';
+
 const transformDate = (dateStr: string, time: string): string => {
 	const [day, month, year] = dateStr.split('.');
 
@@ -12,28 +14,25 @@ const transformDate = (dateStr: string, time: string): string => {
 			0
 		)
 	);
-
+	
 	return date.toISOString();
 };
 
-export const createBody = (
-	sDate: string,
-	eDate: string,
-	inn: number,
-	mFullness: boolean,
-	inBusiness: boolean,
-	mainRole: boolean,
-	riskFactors: boolean,
-	excludeTechNews: boolean,
-	excludeAnnouncements: boolean,
-	excludeDigests: boolean,
-	limit: number,
-	tonality: string
-) => {
+const transformTonality = (tonality: string): string => {
+	if (tonality === 'Позитивная') {
+		return 'Positive';
+	} else if (tonality === 'Негативная') {
+		return 'Negative';
+	} else {
+		return 'Any';
+	}
+};
+
+export const createBody = (data: BodyArgs) => {
 	const body = {
 		issueDateInterval: {
-			startDate: transformDate(sDate, 'start'),
-			endDate: transformDate(eDate, 'end'),
+			startDate: transformDate(data.sDate, 'start'),
+			endDate: transformDate(data.eDate, 'end'),
 		},
 		searchContext: {
 			targetSearchEntitiesContext: {
@@ -42,14 +41,14 @@ export const createBody = (
 						type: 'company',
 						sparkId: null,
 						entityId: null,
-						inn: inn,
-						maxFullness: mFullness,
-						inBusinessNews: inBusiness,
+						inn: data.inn,
+						maxFullness: data.mFullness,
+						inBusinessNews: data.inBusiness,
 					},
 				],
-				onlyMainRole: mainRole,
-				tonality: tonality,
-				onlyWithRiskFactors: riskFactors,
+				onlyMainRole: data.mainRole,
+				tonality: transformTonality(data.tonality),
+				onlyWithRiskFactors: data.riskFactors,
 				riskFactors: {
 					and: [],
 					or: [],
@@ -74,12 +73,12 @@ export const createBody = (
 			excludedSourceGroups: [],
 		},
 		attributeFilters: {
-			excludeTechNews: !excludeTechNews,
-			excludeAnnouncements: !excludeAnnouncements,
-			excludeDigests: !excludeDigests,
+			excludeTechNews: !data.excludeTechNews,
+			excludeAnnouncements: !data.excludeAnnouncements,
+			excludeDigests: !data.excludeDigests,
 		},
 		similarMode: 'duplicates',
-		limit: limit,
+		limit: data.limit,
 		sortType: 'sourceInfluence',
 		sortDirectionType: 'desc',
 		intervalType: 'month',
