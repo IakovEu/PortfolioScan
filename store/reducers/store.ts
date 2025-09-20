@@ -12,17 +12,19 @@ import {
 import { authorizationSlice } from './authorizationSlice';
 import { searchConfigurationSlice } from './searchFormAnswersSlice';
 import { histogramSlice } from './histogramSlice';
+import { idSlice } from './idSlice';
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['authorization', 'searchConfiguration', 'histogram'],
+	whitelist: ['authorization', 'searchConfiguration', 'histogram', 'ids'],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
 	authorization: authorizationSlice.reducer,
 	searchConfiguration: searchConfigurationSlice.reducer,
 	histogram: histogramSlice.reducer,
+	ids: idSlice.reducer,
 });
 
 export const store = configureStore({

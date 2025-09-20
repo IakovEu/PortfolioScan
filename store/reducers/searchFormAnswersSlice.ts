@@ -30,9 +30,7 @@ export const searchConfigurationSlice = createSlice({
 			state.inn = inn;
 			state.limit = limit;
 		},
-		clearPreviousResults: () => {
-			return initialState;
-		},
+		clearPreviousAnswers: () => initialState,
 		setSDate: (state, action) => {
 			state.sDate = action.payload;
 		},
@@ -54,7 +52,7 @@ export const searchConfigurationSlice = createSlice({
 export const {
 	setTonality,
 	setInnAndLimit,
-	clearPreviousResults,
+	clearPreviousAnswers,
 	setSDate,
 	setEDate,
 	setCheckboxes,

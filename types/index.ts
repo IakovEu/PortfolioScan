@@ -47,3 +47,12 @@ export interface InitialHistogramState {
 	total: DataItem[] | null;
 	withRisk: DataItem[] | null;
 }
+
+interface idItem {
+	encodedId: string;
+}
+
+export interface IdsInitialState {
+	isEmpty: boolean;
+	ids: idItem[] | null;
+}

@@ -12,13 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootDispatch, RootState } from '@/store/reducers/store';
 import { useEffect, useState } from 'react';
 import {
-	clearPreviousResults,
+	clearPreviousAnswers,
 	setInnAndLimit,
 } from '@/store/reducers/searchFormAnswersSlice';
 import { innValidator, limitValidator } from '@/helpers/innAndLimitValidators';
 import clsx from 'clsx';
 import { dateValidator } from '@/helpers/dateValidator';
 import { clearPreviousHistogram } from '@/store/reducers/histogramSlice';
+import { clearPreviousIds } from '@/store/reducers/idSlice';
 
 export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -59,8 +60,9 @@ export const BLockMain = () => {
 		if (!isAuthorized) {
 			router.push('/');
 		}
-		dispatch(clearPreviousResults());
+		dispatch(clearPreviousAnswers());
 		dispatch(clearPreviousHistogram());
+		dispatch(clearPreviousIds());
 	}, [dispatch, isAuthorized, router]);
 
 	return (

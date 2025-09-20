@@ -15,10 +15,14 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { setHistogram } from '@/store/reducers/histogramSlice';
 import { formatDateToDDMMYY } from '@/helpers/dateValidator';
+import { setIds } from '@/store/reducers/idSlice';
 
 export const BlockWithSummary = () => {
 	const dispatch = useDispatch<RootDispatch>();
-	const isEmpty = useSelector((state: RootState) => state.histogram.isEmpty);
+	const isEmptyIds = useSelector((state: RootState) => state.ids.isEmpty);
+	const isEmptyHistogram = useSelector(
+		(state: RootState) => state.histogram.isEmpty
+	);
 	const accessToken = useSelector(
 		(state: RootState) => state.authorization.accessToken
 	);
@@ -27,33 +31,46 @@ export const BlockWithSummary = () => {
 	);
 	const total = useSelector((state: RootState) => state.histogram.total);
 	const withRisk = useSelector((state: RootState) => state.histogram.withRisk);
+	const headers = {
+		Authorization: `Bearer ${accessToken}`,
+	};
+	const body = createBody({ ...configuration, ...configuration.checkboxes });
 
 	const getHistograms = async () => {
-		const headers = {
-			Authorization: `Bearer ${accessToken}`,
-		};
-
-		const body = createBody({ ...configuration, ...configuration.checkboxes });
-
 		try {
 			const response = await axios.post(
 				'https://gateway.scan-interfax.ru/api/v1/objectsearch/histograms',
 				body,
 				{ headers }
 			);
-
 			dispatch(setHistogram(response.data.data));
 		} catch (e) {
 			console.log(e);
 		}
 	};
 
+	const getIds = async () => {
+		try {
+			const response = await axios.post(
+				'https://gateway.scan-interfax.ru/api/v1/objectsearch',
+				body,
+				{ headers }
+			);
+			dispatch(setIds(response.data.items));
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	useEffect(() => {
-		if (isEmpty) {
+		if (isEmptyHistogram) {
 			getHistograms();
 		}
+		if (isEmptyIds) {
+			getIds();
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isEmpty]);
+	}, [isEmptyHistogram]);
 
 	return (
 		<section className={st.container}>
