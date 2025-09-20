@@ -1,22 +1,5 @@
 import { BodyArgs } from '@/types';
-
-const transformDate = (dateStr: string, time: string): string => {
-	const [day, month, year] = dateStr.split('.');
-
-	const date = new Date(
-		Date.UTC(
-			parseInt(year, 10),
-			parseInt(month, 10) - 1,
-			parseInt(day, 10),
-			time === 'start' ? 0 : 23,
-			time === 'start' ? 0 : 59,
-			time === 'start' ? 0 : 59,
-			0
-		)
-	);
-	
-	return date.toISOString();
-};
+import { transformDate } from './dateValidator';
 
 const transformTonality = (tonality: string): string => {
 	if (tonality === 'Позитивная') {

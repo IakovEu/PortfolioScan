@@ -18,6 +18,7 @@ import {
 import { innValidator, limitValidator } from '@/helpers/innAndLimitValidators';
 import clsx from 'clsx';
 import { dateValidator } from '@/helpers/dateValidator';
+import { clearPreviousHistogram } from '@/store/reducers/histogramSlice';
 
 export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -59,6 +60,7 @@ export const BLockMain = () => {
 			router.push('/');
 		}
 		dispatch(clearPreviousResults());
+		dispatch(clearPreviousHistogram());
 	}, [dispatch, isAuthorized, router]);
 
 	return (

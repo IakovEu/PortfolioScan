@@ -5,7 +5,7 @@ const initialState: InitialAuthorizationState = {
 	isAuthorized: false,
 	accessToken: '',
 	expire: '',
-	activeTariff: 1,
+	activeTariff: 0,
 };
 
 export const authorizationSlice = createSlice({

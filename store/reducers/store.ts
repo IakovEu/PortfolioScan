@@ -11,16 +11,18 @@ import {
 } from 'redux-persist';
 import { authorizationSlice } from './authorizationSlice';
 import { searchConfigurationSlice } from './searchFormAnswersSlice';
+import { histogramSlice } from './histogramSlice';
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['authorization', 'searchConfiguration'],
+	whitelist: ['authorization', 'searchConfiguration', 'histogram'],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
 	authorization: authorizationSlice.reducer,
 	searchConfiguration: searchConfigurationSlice.reducer,
+	histogram: histogramSlice.reducer,
 });
 
 export const store = configureStore({

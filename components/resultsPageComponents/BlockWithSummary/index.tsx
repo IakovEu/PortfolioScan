@@ -8,19 +8,25 @@ import Image from 'next/image';
 import leftArrow from '@/public/leftArrow.svg';
 import rightArrow from '@/public/rightArrow.svg';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/reducers/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootDispatch, RootState } from '@/store/reducers/store';
 import { createBody } from '@/helpers/createBodyForRequest';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { setHistogram } from '@/store/reducers/histogramSlice';
+import { formatDateToDDMMYY } from '@/helpers/dateValidator';
 
 export const BlockWithSummary = () => {
+	const dispatch = useDispatch<RootDispatch>();
+	const isEmpty = useSelector((state: RootState) => state.histogram.isEmpty);
 	const accessToken = useSelector(
 		(state: RootState) => state.authorization.accessToken
 	);
 	const configuration = useSelector(
 		(state: RootState) => state.searchConfiguration
 	);
+	const total = useSelector((state: RootState) => state.histogram.total);
+	const withRisk = useSelector((state: RootState) => state.histogram.withRisk);
 
 	const getHistograms = async () => {
 		const headers = {
@@ -36,29 +42,46 @@ export const BlockWithSummary = () => {
 				{ headers }
 			);
 
-			console.log(response.data);
+			dispatch(setHistogram(response.data.data));
 		} catch (e) {
 			console.log(e);
 		}
 	};
 
 	useEffect(() => {
-		getHistograms();
+		if (isEmpty) {
+			getHistograms();
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [configuration]);
+	}, [isEmpty]);
 
 	return (
 		<section className={st.container}>
 			<h2 className={st.subTitle}>ОБЩАЯ СВОДКА</h2>
-			<p className={st.underSubTitle}>Найдено {0} вариантов</p>
+			{total === null ? (
+				<p className={st.underSubTitle}>Информация загружается...</p>
+			) : (
+				<p className={st.underSubTitle}>
+					Найдено {total.length}{' '}
+					{total.length > 4
+						? 'вариантов'
+						: total.length === 1
+						? 'вариант'
+						: 'варианта'}
+				</p>
+			)}
 			<div className={st.swiperContainer}>
 				<div className={st.customPrev}>
 					<Image src={leftArrow} alt="<—" />
 				</div>
 				<Swiper
 					className={st.carousel}
-					slidesPerView={1}
-					slidesPerGroup={1}
+					slidesPerView={
+						!total || !withRisk ? 1 : total.length > 5 ? 5 : total.length
+					}
+					slidesPerGroup={
+						!total || !withRisk ? 1 : total.length > 5 ? 5 : total.length
+					}
 					loop={true}
 					modules={[Navigation]}
 					navigation={{
@@ -70,34 +93,23 @@ export const BlockWithSummary = () => {
 						<p className={st.categories}>Всего</p>
 						<p className={st.categories}>Риски</p>
 					</div>
-					{1 ? (
+					{!total || !withRisk ? (
 						<SwiperSlide>
 							<CircularProgress className={st.loader} thickness={5} />
 							<p className={st.underLoader}>Загружаем данные</p>
 						</SwiperSlide>
 					) : (
-						<>
-							<SwiperSlide className={st.slide}>
-								<p className={st.slideCategories}>дата</p>
-								<p className={st.slideCategories}>0</p>
-								<p className={st.slideCategories}>0</p>
-							</SwiperSlide>
-							<SwiperSlide className={st.slide}>
-								<p className={st.slideCategories}>дата</p>
-								<p className={st.slideCategories}>0</p>
-								<p className={st.slideCategories}>0</p>
-							</SwiperSlide>
-							<SwiperSlide className={st.slide}>
-								<p className={st.slideCategories}>дата</p>
-								<p className={st.slideCategories}>0</p>
-								<p className={st.slideCategories}>0</p>
-							</SwiperSlide>
-							<SwiperSlide className={st.slide}>
-								<p className={st.slideCategories}>дата</p>
-								<p className={st.slideCategories}>0</p>
-								<p className={st.slideCategories}>0</p>
-							</SwiperSlide>
-						</>
+						total.map((el, ind) => {
+							return (
+								<SwiperSlide className={st.slide} key={ind}>
+									<p className={st.slideCategories}>
+										{formatDateToDDMMYY(el.date)}
+									</p>
+									<p className={st.slideCategories}>{el.value}</p>
+									<p className={st.slideCategories}>{withRisk[ind].value}</p>
+								</SwiperSlide>
+							);
+						})
 					)}
 				</Swiper>
 				<div className={st.customNext}>

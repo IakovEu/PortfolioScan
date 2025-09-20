@@ -1,16 +1,16 @@
 export interface BodyArgs {
-    sDate: string;
-    eDate: string;
-    inn: number;
-    mFullness: boolean;
-    inBusiness: boolean;
-    mainRole: boolean;
-    riskFactors: boolean;
-    excludeTechNews: boolean;
-    excludeAnnouncements: boolean;
-    excludeDigests: boolean;
-    limit: number;
-    tonality: string;
+	sDate: string;
+	eDate: string;
+	inn: number;
+	mFullness: boolean;
+	inBusiness: boolean;
+	mainRole: boolean;
+	riskFactors: boolean;
+	excludeTechNews: boolean;
+	excludeAnnouncements: boolean;
+	excludeDigests: boolean;
+	limit: number;
+	tonality: string;
 }
 
 export interface InitialSearchState {
@@ -35,4 +35,15 @@ export interface InitialAuthorizationState {
 	accessToken: string;
 	expire: string;
 	activeTariff: 0 | 1 | 2;
+}
+
+interface DataItem {
+	date: string;
+	value: number;
+}
+
+export interface InitialHistogramState {
+	isEmpty: boolean;
+	total: DataItem[] | null;
+	withRisk: DataItem[] | null;
 }
