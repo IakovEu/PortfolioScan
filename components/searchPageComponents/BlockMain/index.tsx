@@ -20,6 +20,7 @@ import clsx from 'clsx';
 import { dateValidator } from '@/helpers/dateValidator';
 import { clearPreviousHistogram } from '@/store/reducers/histogramSlice';
 import { clearPreviousIds } from '@/store/reducers/idSlice';
+import { clearPreviousDocs } from '@/store/reducers/docSlice';
 
 export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -63,6 +64,7 @@ export const BLockMain = () => {
 		dispatch(clearPreviousAnswers());
 		dispatch(clearPreviousHistogram());
 		dispatch(clearPreviousIds());
+		dispatch(clearPreviousDocs());
 	}, [dispatch, isAuthorized, router]);
 
 	return (

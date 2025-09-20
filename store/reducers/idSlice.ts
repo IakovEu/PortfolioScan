@@ -4,6 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState: IdsInitialState = {
 	isEmpty: true,
 	ids: null,
+	sliceFrom: 0,
+	sliceTo: 10,
 };
 
 export const idSlice = createSlice({
@@ -19,8 +21,14 @@ export const idSlice = createSlice({
 		clearPreviousIds: (state) => {
 			state.isEmpty = true;
 			state.ids = null;
+			state.sliceFrom = 0;
+			state.sliceTo = 10;
+		},
+		increaseSliceArgs: (state) => {
+			state.sliceFrom += 10;
+			state.sliceTo += 10;
 		},
 	},
 });
 
-export const { setIds, clearPreviousIds } = idSlice.actions;
+export const { setIds, clearPreviousIds, increaseSliceArgs } = idSlice.actions;

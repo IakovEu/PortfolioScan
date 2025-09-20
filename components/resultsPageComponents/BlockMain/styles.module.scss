@@ -19,6 +19,7 @@
 			box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 
 			.date {
+				display: flex;
 				margin: 0 0 24px;
 				font-size: 16px;
 				font-weight: 400;
@@ -27,6 +28,11 @@
 				.publisher {
 					margin-left: 14px;
 					color: #949494;
+					display: inline-block;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					max-width: 80%;
 
 					&:hover {
 						color: #ffb64f;
@@ -35,11 +41,13 @@
 			}
 
 			.itemTitle {
-				max-width: 546px;
+				height: 91px;
 				margin: 0 0 14px;
 				font-size: 26px;
 				font-weight: 500;
 				line-height: 31px;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			.underItemTitle {
@@ -52,10 +60,20 @@
 			}
 
 			.blockWithImg {
+				display: flex;
+				justify-content: center;
+				align-items:center;
 				height: 158px;
 				margin: 14px 0 20px;
 				border-radius: 10px;
-				background-color: #949494;
+				background-color:#ffb64f;
+
+				.notImage{
+					margin: 0;
+					font-style: italic;
+					font-family: 'Montserrat';
+					font-size: 24px;
+				}
 			}
 
 			.txtContent {
@@ -66,6 +84,32 @@
 				font-size: 16px;
 				font-weight: 400;
 				color: #000000af;
+				overflow: hidden;
+				text-overflow: ellipsis;
+
+				h1,
+				h2,
+				h3,
+				h4,
+				p,
+				a,
+				sentence,
+				entity {
+					margin: 0;
+					color: #000000af;
+					font-size: 16px;
+					font-weight: 400;
+					font-style: normal !important;
+					text-decoration: none;
+				}
+
+				a {
+					color: #ffb64f;
+				}
+
+				img, td {
+					display: none;
+				}
 			}
 
 			.linkAndWords {

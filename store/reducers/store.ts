@@ -13,11 +13,18 @@ import { authorizationSlice } from './authorizationSlice';
 import { searchConfigurationSlice } from './searchFormAnswersSlice';
 import { histogramSlice } from './histogramSlice';
 import { idSlice } from './idSlice';
+import { docSlice } from './docSlice';
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['authorization', 'searchConfiguration', 'histogram', 'ids'],
+	whitelist: [
+		'authorization',
+		'searchConfiguration',
+		'histogram',
+		'ids',
+		'docs',
+	],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {
@@ -25,6 +32,7 @@ const persistedReducer = persistCombineReducers(persistConfig, {
 	searchConfiguration: searchConfigurationSlice.reducer,
 	histogram: histogramSlice.reducer,
 	ids: idSlice.reducer,
+	docs: docSlice.reducer,
 });
 
 export const store = configureStore({

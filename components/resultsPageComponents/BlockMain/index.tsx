@@ -4,59 +4,119 @@ import Link from 'next/link';
 import { Button } from '@mui/material';
 import { sx } from '@/store/staticData';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/reducers/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootDispatch, RootState } from '@/store/reducers/store';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { increaseSliceArgs } from '@/store/reducers/idSlice';
+import { setDocs } from '@/store/reducers/docSlice';
+import { formatDateToDDMMYY } from '@/helpers/dateValidator';
+import { decodeHtmlEntities, numberToString } from '@/helpers/others';
 
 export const BlockMain = () => {
+	const dispatch = useDispatch<RootDispatch>();
+	const router = useRouter();
+	const isEmptyIds = useSelector((state: RootState) => state.ids.isEmpty);
+	const ids = useSelector((state: RootState) => state.ids.ids);
+	const sliceFrom = useSelector((state: RootState) => state.ids.sliceFrom);
+	const sliceTo = useSelector((state: RootState) => state.ids.sliceTo);
 	const isAuthorized = useSelector(
 		(state: RootState) => state.authorization.isAuthorized
 	);
-	const router = useRouter();
+	const accessToken = useSelector(
+		(state: RootState) => state.authorization.accessToken
+	);
+	const docs = useSelector((state: RootState) => state.docs.docs);
+
+	const headers = {
+		Authorization: `Bearer ${accessToken}`,
+	};
+
+	const createBodyWithIds = () => {
+		const body = ids && { ids: [...ids].slice(sliceFrom, sliceTo) };
+		dispatch(increaseSliceArgs());
+		return body;
+	};
+
+	const getDocs = async () => {
+		try {
+			const response = await axios.post(
+				'https://gateway.scan-interfax.ru/api/v1/documents',
+				createBodyWithIds(),
+				{ headers }
+			);
+			console.log(response.data);
+			dispatch(setDocs(response.data));
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
 	useEffect(() => {
 		if (!isAuthorized) {
 			router.push('/');
 		}
-	}, [isAuthorized, router]);
+		if (!isEmptyIds && sliceTo === 10) {
+			getDocs();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isAuthorized, isEmptyIds]);
 
 	return (
 		<section className={st.container}>
 			<h2 className={st.subTitle}>СПИСОК ДОКУМЕНТОВ</h2>
 			<div className={st.list}>
-				<div className={st.listItem}>
-					<p className={st.date}>
-						Дата
-						<Link className={st.publisher} href="/">
-							Источник
-						</Link>
-					</p>
-					<h3 className={st.itemTitle}>
-						Скиллфэктори - лучшая онлайн-школа для будущих айтишников
-					</h3>
-					<span className={st.underItemTitle}>Технические новости</span>
-					<div className={st.blockWithImg}></div>
-					<p className={st.txtContent}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-						deserunt libero nihil expedita dolore quia id quaerat quisquam
-						aperiam reiciendis illum ipsa impedit minus, fugiat blanditiis,
-						voluptates aspernatur consectetur et? Voluptatum laudantium quaerat,
-						natus accusamus iure quia officiis pariatur excepturi ea, eaque ad
-						porro ipsam. Saepe, praesentium! Quisquam numquam nisi perspiciatis
-						blanditiis id iste sed? Recusandae laboriosam consectetur architecto
-					</p>
-					<div className={st.linkAndWords}>
-						<Link className={st.link} href="/">
-							Читать в источнике
-						</Link>
-						<p className={st.wordsAmount}>2 слова</p>
-					</div>
-				</div>
+				{docs &&
+					docs.map((el, ind) => {
+						const decodedMarkup = decodeHtmlEntities(el.ok.content.markup);
+
+						return (
+							<div className={st.listItem} key={ind}>
+								<p className={st.date}>
+									{formatDateToDDMMYY(el.ok.issueDate)}
+									<Link className={st.publisher} href={el.ok.url}>
+										{el.ok.source.name}
+									</Link>
+								</p>
+								<h3 className={st.itemTitle}>{el.ok.title.text}</h3>
+								{el.ok.attributes.isTechNews && (
+									<span className={st.underItemTitle}>Технические новости</span>
+								)}
+								{el.ok.attributes.isAnnouncement && (
+									<span className={st.underItemTitle}>Анонсы и события</span>
+								)}
+								{el.ok.attributes.isDigest && (
+									<span className={st.underItemTitle}>Сводки новостей</span>
+								)}
+								<div className={st.blockWithImg}>
+									<h4 className={st.notImage}>NEWS</h4>
+								</div>
+								<p
+									className={st.txtContent}
+									dangerouslySetInnerHTML={{ __html: decodedMarkup }}
+								/>
+								<div className={st.linkAndWords}>
+									<Link className={st.link} href={el.ok.url}>
+										Читать в источнике
+									</Link>
+									<p className={st.wordsAmount}>
+										{numberToString(el.ok.attributes.wordCount)}
+									</p>
+								</div>
+							</div>
+						);
+					})}
 			</div>
 			<div className={st.btnContainer}>
-				<Button className={st.btnShowMore} sx={sx} variant="contained">
-					Показать больше
-				</Button>
+				{(ids === null || sliceFrom < ids.length) && (
+					<Button
+						className={st.btnShowMore}
+						sx={sx}
+						variant="contained"
+						onClick={getDocs}>
+						Показать больше
+					</Button>
+				)}
 			</div>
 		</section>
 	);

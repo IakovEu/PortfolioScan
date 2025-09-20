@@ -2,6 +2,7 @@ import { InitialAuthorizationState } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: InitialAuthorizationState = {
+	// Я добавил маркер состояния, чтобы в коде сразу было понятно, что я проверяю, в остальных слайсах тоже
 	isAuthorized: false,
 	accessToken: '',
 	expire: '',

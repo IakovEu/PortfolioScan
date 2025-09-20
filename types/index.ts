@@ -55,4 +55,30 @@ interface idItem {
 export interface IdsInitialState {
 	isEmpty: boolean;
 	ids: idItem[] | null;
+	sliceFrom: number;
+	sliceTo: number;
+}
+
+interface AttributeObj {
+	isAnnouncement: boolean;
+	isDigest: boolean;
+	isTechNews: boolean;
+	wordCount: number;
+}
+
+interface OkObject {
+	attributes: AttributeObj;
+	content: { markup: string };
+	issueDate: string;
+	source: { name: string };
+	title: { markup: string; text: string };
+	url: string;
+}
+
+export interface Doc {
+	ok: OkObject;
+}
+
+export interface DocInitialState {
+	docs: Doc[] | null;
 }
