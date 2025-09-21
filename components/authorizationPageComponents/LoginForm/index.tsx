@@ -10,7 +10,7 @@ import googleImg from '@/public/google.svg';
 import facebookImg from '@/public/facebook.svg';
 import yandexImg from '@/public/yandex.svg';
 import lockImg from '@/public/lock.svg';
-import { sx } from '@/store/staticData';
+import { sx, toastSettings } from '@/store/staticData';
 import axios from 'axios';
 import {
 	loginValidator,
@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { RootDispatch } from '@/store/reducers/store';
 import { setTokenData } from '@/store/reducers/authorizationSlice';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export const LoginForm = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -47,6 +48,10 @@ export const LoginForm = () => {
 					);
 					setError(false);
 					dispatch(setTokenData(response.data));
+					toast('Вы успешно вошли в аккаунт', {
+						...toastSettings,
+						className: st.notification,
+					});
 					router.push('/');
 				} else {
 					setError(true);

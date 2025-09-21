@@ -5,7 +5,7 @@ import Link from 'next/link';
 import logo from '@/public/logo.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
-import { sx } from '@/store/staticData';
+import { sx, toastSettings } from '@/store/staticData';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootDispatch, RootState } from '@/store/reducers/store';
 import {
@@ -16,6 +16,7 @@ import {
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const Header = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -46,7 +47,8 @@ export const Header = () => {
 						}
 					);
 					// Как я понял, задумывалось, чтобы эта проверка выполнялась на сервере, но этого не проиходит,
-					// поэтому ограничивать запросы пользователя для текущей сессии по одному токену буду я
+					// поэтому ограничивать запросы пользователя для текущей сессии по одному токену буду я,
+					// в идеале нужен отдельный запрос к апи для тарифа и поерделения лимитов (тарифы также определяются на клиенте)
 					dispatch(setUsedAndLimit(response.data.eventFiltersInfo));
 				} catch (e) {
 					console.error(e);
@@ -106,6 +108,10 @@ export const Header = () => {
 										dispatch(deleteTokenData());
 										dispatch(clearUsedAndLimit());
 										router.push('/');
+										toast('Вы вышли из аккаунта', {
+											...toastSettings,
+											className: st.notification,
+										});
 									}}>
 									Выйти
 								</Button>

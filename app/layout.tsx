@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { Montserrat } from 'next/font/google';
 import clsx from 'clsx';
 import ClientProviderWrapper from '@/components/ClientProviderWrapper';
+import { ToastContainer } from 'react-toastify';
 
 export const metadata: Metadata = {
 	title: 'Scan',
@@ -34,6 +35,18 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={clsx(montserrat.className, inter.className)}>
 				<ClientProviderWrapper>{children}</ClientProviderWrapper>
+				<ToastContainer
+					position="bottom-right"
+					autoClose={5000}
+					hideProgressBar
+					newestOnTop={false}
+					closeOnClick={false}
+					rtl={false}
+					pauseOnFocusLoss={false}
+					draggable={false}
+					pauseOnHover={false}
+					theme="light"
+				/>
 			</body>
 		</html>
 	);

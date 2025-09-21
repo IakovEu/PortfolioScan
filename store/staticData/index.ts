@@ -7,6 +7,7 @@ import iconSix from '@/public/somersaultBack.svg';
 import lamp from '@/public/lampIcon.png';
 import target from '@/public/targetIcon.png';
 import laptop from '@/public/laptopIcon.png';
+import { ToastOptions } from 'react-toastify';
 
 // В этом файле находятся статичные данные для генерации контента (выносить их в Redux не имеет смысла). В некоторых
 // объектах содержатся наименования классов конкретного компонента, тк проект небольшой, я допустил это, при необходимости
@@ -91,3 +92,14 @@ export const dataCheckboxes = [
 	['Включать анонсы и календари', 'excludeAnnouncements'],
 	['Включать сводки новостей', 'excludeDigests'],
 ];
+
+export const toastSettings: ToastOptions = {
+	position: 'bottom-right',
+	autoClose: 2500,
+	hideProgressBar: false,
+	closeOnClick: false,
+	pauseOnHover: true,
+	draggable: false,
+	progress: undefined,
+	theme: 'dark',
+};

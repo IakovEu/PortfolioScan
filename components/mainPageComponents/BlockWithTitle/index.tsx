@@ -4,9 +4,10 @@ import Image from 'next/image';
 import image from '@/public/mainPage-1.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
-import { sx } from '@/store/staticData';
+import { sx, toastSettings } from '@/store/staticData';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/reducers/store';
+import { toast } from 'react-toastify';
 
 export const BlockWithTitle = () => {
 	const isAuthorized = useSelector(
@@ -32,6 +33,11 @@ export const BlockWithTitle = () => {
 						sx={sx}
 						onClick={() => {
 							router.push('/search');
+							toast('Заполните форму', {
+								...toastSettings,
+								autoClose: 2500,
+								className: st.notification,
+							});
 						}}>
 						Запросить данные
 					</Button>

@@ -1,7 +1,7 @@
 'use client';
 import st from './styles.module.scss';
 import Button from '@mui/material/Button';
-import { sx } from '@/store/staticData';
+import { sx, toastSettings } from '@/store/staticData';
 import { Tonality } from './tonality';
 import { DateSelection } from './dateSelection';
 import { Checkboxes } from './checkboxes';
@@ -22,6 +22,7 @@ import { clearPreviousHistogram } from '@/store/reducers/histogramSlice';
 import { clearPreviousIds } from '@/store/reducers/idSlice';
 import { clearPreviousDocs } from '@/store/reducers/docSlice';
 import { incrUsedDecrLimit } from '@/store/reducers/authorizationSlice';
+import { toast } from 'react-toastify';
 
 export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -58,6 +59,11 @@ export const BLockMain = () => {
 					})
 				);
 				dispatch(incrUsedDecrLimit());
+				toast('Идёт поиск...', {
+					...toastSettings,
+					autoClose: 1500,
+					className: st.notification,
+				});
 				router.push('/results');
 			}
 		}
