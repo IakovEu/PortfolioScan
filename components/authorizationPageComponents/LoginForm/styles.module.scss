@@ -4,7 +4,7 @@
 	width: 429px;
 	height: 523px;
 	flex-direction: column;
-	padding: 20px 25px 39px;
+	padding: 25px 25px 39px;
 	border-radius: 10px;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 
@@ -67,6 +67,11 @@
 	.incorrectInput {
 		border: 1px solid #ff5959;
 		box-shadow: 0 0 8px #ff59594d;
+
+		&:focus {
+			outline: none;
+			border: 1px solid #ff5959;
+		}
 	}
 
 	.firstIncorrectValue,
@@ -171,4 +176,48 @@
 	color: #029491;
 	font-weight: 600;
 	font-size: 18px;
+}
+
+@media (max-width: 1300px) {
+	.form {
+		margin: 0 auto 485px;
+	}
+}
+
+@media (max-width: 900px) {
+	.form {
+		.lock {
+			top: -81px;
+			left: 81px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.form {
+		padding: 25px 15px 20px;
+		width: 335px;
+		height: 504px;
+
+		.topBtns {
+			.loginBtn {
+				padding: 0 30px 3px;
+				font-size: 14px;
+			}
+
+			.registerBtn {
+				padding: 0 17px 3px;
+				font-size: 14px;
+			}
+		}
+
+		.firstLabel,
+		.secondLabel {
+			font-size: 14px;
+		}
+
+		.btnSubmit {
+			font-size: 20px;
+		}
+	}
 }

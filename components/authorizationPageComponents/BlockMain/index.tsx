@@ -7,12 +7,10 @@ export const BlockMain = () => {
 	return (
 		<section className={st.container}>
 			<h1 className={st.title}>
-				ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ
-				<br /> НА ТАРИФ, НЕОБХОДИМО
-				<br /> АВТОРИЗОВАТЬСЯ.
+				ДЛЯ ОФОРМЛЕНИЯ ПОДПИСКИ НА ТАРИФ, НЕОБХОДИМО АВТОРИЗОВАТЬСЯ.
 			</h1>
-			<Image className={st.image} src={image} alt="*" priority />
 			<LoginForm />
+			<Image className={st.image} src={image} alt="*" priority />
 		</section>
 	);
 };

@@ -105,7 +105,7 @@ export const LoginForm = () => {
 					<input
 						id="tel"
 						className={clsx(st.input, {
-							[st.incorrectInput]: 0,
+							[st.incorrectInput]: loginValidator(login),
 						})}
 						type="tel"
 						value={login}
@@ -123,7 +123,7 @@ export const LoginForm = () => {
 					<input
 						id="password"
 						className={clsx(st.input, {
-							[st.incorrectInput]: 0,
+							[st.incorrectInput]: error || passwordValidator(password),
 						})}
 						type="password"
 						value={password}
