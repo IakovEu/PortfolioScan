@@ -1,13 +1,17 @@
 .container {
 	height: 93px;
-	max-width: 1320px;
+	max-width: 1440px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 0 60px;
 
 	.logo {
 		user-select: none;
+		width: 141px;
+		height: 93px;
+		background-image: url(../../public/logo.png);
 	}
 
 	.links {
@@ -35,7 +39,6 @@
 
 		.limit {
 			position: absolute;
-			// top: 0;
 			right: 200px;
 			width: 175px;
 			height: 63px;
@@ -153,6 +156,23 @@
 				background-color: #ffb64f;
 			}
 		}
+
+		.burgerBtn {
+			display: none !important;
+			padding: 12px 10px;
+			height: 50px;
+			min-width: 0 !important;
+			width: 50px;
+
+			.burger {
+				width: 30px;
+				height: 25px;
+				background-image: url(../../public/burgerMenu.svg);
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: 30px 25px;
+			}
+		}
 	}
 }
 
@@ -160,4 +180,134 @@
 	color: #029491;
 	font-weight: 600;
 	font-size: 18px;
+}
+
+.mobileMenu {
+	max-width: 1440px;
+	height: 491px;
+	background-color: #029491;
+
+	.logoAndClose {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px 0 14px;
+
+		.mobLogo {
+			width: 111px;
+			height: 90px;
+			background-image: url(../../public/smallWhiteLogo.png);
+		}
+
+		.btnClose {
+			min-width: 0 !important;
+			width: 45px !important;
+			height: 50px;
+			font-size: 24px;
+			font-weight: 900;
+			padding: 0;
+			color: #ffffff;
+		}
+	}
+
+	.menuLinks {
+		margin: 46px auto 75px;
+		width: 65px;
+		height: 109px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+
+		.menuLink {
+			text-decoration: none;
+			color: #ffffff;
+			font-size: 16px;
+			font-weight: 400;
+
+			&:hover {
+				color: #ffb64f;
+			}
+		}
+	}
+
+	.mobBtnContainer {
+		display: flex;
+		flex-direction: column;
+		width: fit-content;
+		margin: 0 auto;
+		gap: 15px;
+
+		.mobReg {
+			padding: 0;
+			font-size: 16px;
+			color: #ffffff;
+			font-family: 'inter';
+			font-weight: 400;
+
+			&:hover {
+				color: #ffb64f;
+			}
+		}
+
+		.mobAuthorize {
+			padding: 0;
+			width: 295px;
+			height: 52px;
+			background-color: #7ce3e1;
+			color: #000000;
+			font-weight: 500;
+			font-size: 20px;
+			border-radius: 5px;
+
+			&:hover {
+				background-color: #ffb64f;
+			}
+		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.container {
+		.limitAndAuthorized {
+			.limit {
+				top: 50px;
+				right: 0;
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	.container {
+		.links {
+			display: none;
+		}
+
+		.authorization {
+			width: fit-content;
+
+			.btnRegister,
+			.stick,
+			.btnAuthorize {
+				display: none;
+			}
+
+			.burgerBtn {
+				display: block !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	.container {
+		padding: 0 34px 0 18px;
+
+		.logo {
+			width: 111px;
+			height: 93px;
+			background-image: url(../../public/smallLogoColored.png);
+		}
+	}
 }

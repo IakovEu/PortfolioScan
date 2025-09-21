@@ -1,8 +1,6 @@
 'use client';
 import st from './styles.module.scss';
-import Image from 'next/image';
 import Link from 'next/link';
-import logo from '@/public/logo.png';
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
 import { sx, toastSettings } from '@/store/staticData';
@@ -14,12 +12,14 @@ import {
 	setUsedAndLimit,
 } from '@/store/reducers/authorizationSlice';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export const Header = () => {
+	const router = useRouter();
 	const dispatch = useDispatch<RootDispatch>();
+	const [burgerMenu, setBurgerMenu] = useState<boolean>(false);
 	const isAuthorized = useSelector(
 		(state: RootState) => state.authorization.isAuthorized
 	);
@@ -32,7 +32,6 @@ export const Header = () => {
 	const limitCompanies = useSelector(
 		(state: RootState) => state.authorization.limitCompanies
 	);
-	const router = useRouter();
 
 	useEffect(() => {
 		const sendData = async () => {
@@ -61,77 +60,131 @@ export const Header = () => {
 
 	return (
 		<header>
-			<div className={st.container}>
-				<Link href="/">
-					<Image className={st.logo} src={logo} alt="logo" priority />
-				</Link>
-				<nav className={st.links}>
-					<Link className={st.link} href="/">
-						Главная
+			{!burgerMenu && (
+				<div className={st.container}>
+					<Link href="/">
+						<div className={st.logo}></div>
 					</Link>
-					<Link className={st.link} href="/tariffs">
-						Тарифы
-					</Link>
-					<Link className={st.link} href="/FAQ">
-						FAQ
-					</Link>
-				</nav>
-				{isAuthorized ? (
-					<div className={st.limitAndAuthorized}>
-						<div className={st.limit}>
-							{limitCompanies || usedCompanies ? (
-								<>
-									<p className={st.lineOne}>
-										Использовано компаний <span>&nbsp;{usedCompanies}</span>
-									</p>
-									<p className={st.lineTwo}>
-										Лимит по компаниям <span>&nbsp;{limitCompanies}</span>
-									</p>
-								</>
-							) : (
-								<div className={st.loaderContainer}>
-									<CircularProgress
-										className={st.loader}
-										thickness={3}
-										size={30}
-									/>
-								</div>
-							)}
-						</div>
-						<div className={st.authorizedUser}>
-							<div className={st.nameAndBtn}>
-								<p className={st.name}>Mr. Pickles</p>
-								<Button
-									className={st.exitBtn}
-									sx={sx}
-									onClick={() => {
-										dispatch(deleteTokenData());
-										dispatch(clearUsedAndLimit());
-										router.push('/');
-										toast('Вы вышли из аккаунта', {
-											...toastSettings,
-											className: st.notification,
-										});
-									}}>
-									Выйти
-								</Button>
+					<nav className={st.links}>
+						<Link className={st.link} href="/">
+							Главная
+						</Link>
+						<Link className={st.link} href="/tariffs">
+							Тарифы
+						</Link>
+						<Link className={st.link} href="/FAQ">
+							FAQ
+						</Link>
+					</nav>
+					{isAuthorized ? (
+						<div className={st.limitAndAuthorized}>
+							<div className={st.limit}>
+								{limitCompanies || usedCompanies ? (
+									<>
+										<p className={st.lineOne}>
+											Использовано компаний <span>&nbsp;{usedCompanies}</span>
+										</p>
+										<p className={st.lineTwo}>
+											Лимит по компаниям <span>&nbsp;{limitCompanies}</span>
+										</p>
+									</>
+								) : (
+									<div className={st.loaderContainer}>
+										<CircularProgress
+											className={st.loader}
+											thickness={3}
+											size={30}
+										/>
+									</div>
+								)}
 							</div>
-							<div className={st.avatar}></div>
+							<div className={st.authorizedUser}>
+								<div className={st.nameAndBtn}>
+									<p className={st.name}>Mr. Pickles</p>
+									<Button
+										className={st.exitBtn}
+										sx={sx}
+										onClick={() => {
+											dispatch(deleteTokenData());
+											dispatch(clearUsedAndLimit());
+											router.push('/');
+											toast('Вы вышли из аккаунта', {
+												...toastSettings,
+												className: st.notification,
+											});
+										}}>
+										Выйти
+									</Button>
+								</div>
+								<div className={st.avatar}></div>
+							</div>
 						</div>
-					</div>
-				) : (
-					<div className={st.authorization}>
+					) : (
+						<div className={st.authorization}>
+							<Button
+								className={st.btnRegister}
+								sx={sx}
+								onClick={() => {
+									router.push('/authorization/register');
+								}}>
+								Зарегистрироваться
+							</Button>
+							<div className={st.stick}></div>
+							<Button
+								className={st.btnAuthorize}
+								sx={sx}
+								onClick={() => {
+									router.push('/authorization/login');
+								}}>
+								Войти
+							</Button>
+							<Button
+								className={st.burgerBtn}
+								onClick={() => {
+									setBurgerMenu(true);
+								}}>
+								<div className={st.burger}></div>
+							</Button>
+						</div>
+					)}
+				</div>
+			)}
+			{burgerMenu && (
+				<div className={st.mobileMenu}>
+					<div className={st.logoAndClose}>
+						<Link href="/">
+							<div className={st.mobLogo}></div>
+						</Link>
 						<Button
-							className={st.btnRegister}
+							className={st.btnClose}
+							onClick={() => {
+								setBurgerMenu(false);
+							}}>
+							&#10005;
+						</Button>
+					</div>
+					<nav className={st.menuLinks}>
+						<Link className={st.menuLink} href="/">
+							Главная
+						</Link>
+						<Link className={st.menuLink} href="/tariffs">
+							Тарифы
+						</Link>
+						<Link className={st.menuLink} href="/FAQ">
+							FAQ
+						</Link>
+					</nav>
+					<div className={st.mobBtnContainer}>
+						<Button
+							className={st.mobReg}
 							sx={sx}
 							onClick={() => {
 								router.push('/authorization/register');
 							}}>
 							Зарегистрироваться
 						</Button>
-						<div className={st.stick}></div>
 						<Button
-							className={st.btnAuthorize}
+							className={st.mobAuthorize}
 							sx={sx}
 							onClick={() => {
 								router.push('/authorization/login');
@@ -139,8 +192,8 @@ export const Header = () => {
 							Войти
 						</Button>
 					</div>
-				)}
-			</div>
+				</div>
+			)}
 		</header>
 	);
 };

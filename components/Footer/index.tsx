@@ -8,7 +8,7 @@ export const Footer = () => {
 		<footer className={st.footer}>
 			<div className={st.container}>
 				<Link href="/">
-					<Image className={st.logo} src={logoFooter} alt="logo" priority />
+					<Image className={st.logo} src={logoFooter} alt="logo"  />
 				</Link>
 				<div className={st.contacts}>
 					<p className={st.topContacts}>
