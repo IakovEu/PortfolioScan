@@ -26,9 +26,8 @@ export const searchConfigurationSlice = createSlice({
 			state.tonality = action.payload;
 		},
 		setInnAndLimit: (state, action) => {
-			const { inn, limit } = action.payload;
-			state.inn = inn;
-			state.limit = limit;
+			state.inn = action.payload.inn;
+			state.limit = action.payload.limit;
 		},
 		clearPreviousAnswers: () => initialState,
 		setSDate: (state, action) => {

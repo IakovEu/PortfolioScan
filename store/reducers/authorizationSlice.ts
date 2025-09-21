@@ -7,6 +7,8 @@ const initialState: InitialAuthorizationState = {
 	accessToken: '',
 	expire: '',
 	activeTariff: 0,
+	usedCompanies: null,
+	limitCompanies: null,
 };
 
 export const authorizationSlice = createSlice({
@@ -29,8 +31,28 @@ export const authorizationSlice = createSlice({
 		setActiveTariff: (state, action) => {
 			state.activeTariff = action.payload;
 		},
+		setUsedAndLimit: (state, action) => {
+			state.usedCompanies = action.payload.usedCompanyCount;
+			state.limitCompanies = action.payload.companyLimit;
+		},
+		incrUsedDecrLimit: (state) => {
+			if (state.usedCompanies !== null && state.limitCompanies !== null) {
+				state.usedCompanies += 1;
+				state.limitCompanies -= 1;
+			}
+		},
+		clearUsedAndLimit: (state) => {
+			state.usedCompanies = null;
+			state.limitCompanies = null;
+		},
 	},
 });
 
-export const { setTokenData, deleteTokenData, setActiveTariff } =
-	authorizationSlice.actions;
+export const {
+	setTokenData,
+	deleteTokenData,
+	setActiveTariff,
+	setUsedAndLimit,
+	incrUsedDecrLimit,
+	clearUsedAndLimit,
+} = authorizationSlice.actions;

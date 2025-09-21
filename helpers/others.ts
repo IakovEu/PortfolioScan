@@ -21,3 +21,13 @@ export const decodeHtmlEntities = (str: string) => {
 	txt.innerHTML = str;
 	return txt.value;
 };
+
+export const transformTonality = (tonality: string): string => {
+	if (tonality === 'Позитивная') {
+		return 'Positive';
+	} else if (tonality === 'Негативная') {
+		return 'Negative';
+	} else {
+		return 'Any';
+	}
+};

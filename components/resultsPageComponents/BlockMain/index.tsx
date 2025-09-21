@@ -1,7 +1,7 @@
 'use client';
 import st from './styles.module.scss';
 import Link from 'next/link';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { sx } from '@/store/staticData';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +45,6 @@ export const BlockMain = () => {
 				createBodyWithIds(),
 				{ headers }
 			);
-			console.log(response.data);
 			dispatch(setDocs(response.data));
 		} catch (e) {
 			console.log(e);
@@ -66,7 +65,7 @@ export const BlockMain = () => {
 		<section className={st.container}>
 			<h2 className={st.subTitle}>СПИСОК ДОКУМЕНТОВ</h2>
 			<div className={st.list}>
-				{docs &&
+				{docs ? (
 					docs.map((el, ind) => {
 						const decodedMarkup = decodeHtmlEntities(el.ok.content.markup);
 
@@ -105,10 +104,15 @@ export const BlockMain = () => {
 								</div>
 							</div>
 						);
-					})}
+					})
+				) : (
+					<div className={st.loaderContainer}>
+						<CircularProgress className={st.loader} thickness={5} size={100} />
+					</div>
+				)}
 			</div>
 			<div className={st.btnContainer}>
-				{(ids === null || sliceFrom < ids.length) && (
+				{docs && ids !== null && sliceFrom < ids.length && (
 					<Button
 						className={st.btnShowMore}
 						sx={sx}

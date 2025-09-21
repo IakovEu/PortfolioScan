@@ -7,9 +7,16 @@
 
 	.list {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		gap: 20px;
 		flex-wrap: wrap;
+
+		.loaderContainer {
+			.loader {
+				width: fit-content;
+				color: #029491;
+			}
+		}
 
 		.listItem {
 			max-width: 641px;
@@ -62,13 +69,13 @@
 			.blockWithImg {
 				display: flex;
 				justify-content: center;
-				align-items:center;
+				align-items: center;
 				height: 158px;
 				margin: 14px 0 20px;
 				border-radius: 10px;
-				background-color:#ffb64f;
+				background-color: #ffb64f;
 
-				.notImage{
+				.notImage {
 					margin: 0;
 					font-style: italic;
 					font-family: 'Montserrat';
@@ -107,7 +114,8 @@
 					color: #ffb64f;
 				}
 
-				img, td {
+				img,
+				td {
 					display: none;
 				}
 			}

@@ -1,15 +1,6 @@
 import { BodyArgs } from '@/types';
 import { transformDate } from './dateValidator';
-
-const transformTonality = (tonality: string): string => {
-	if (tonality === 'Позитивная') {
-		return 'Positive';
-	} else if (tonality === 'Негативная') {
-		return 'Negative';
-	} else {
-		return 'Any';
-	}
-};
+import { transformTonality } from './others';
 
 export const createBody = (data: BodyArgs) => {
 	const body = {

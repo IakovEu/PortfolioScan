@@ -45,17 +45,16 @@ export const innValidator = (inn: string | number | null): boolean => {
 };
 
 export const limitValidator = (limit: string | null): boolean => {
-	if (limit === null) {
+	if (limit === null || limit.length === 0) {
 		return false;
-	} else if (limit.length === 0) {
-		return true;
 	} else if (
 		isNaN(+limit) ||
 		+limit > 1000 ||
 		+limit < 1 ||
-		!Number.isInteger(+limit)
-	)
+		!Number.isInteger(+limit) ||
+		/^0/.test(limit)
+	) {
 		return false;
-
+	}
 	return true;
 };

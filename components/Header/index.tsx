@@ -8,9 +8,13 @@ import { useRouter } from 'next/navigation';
 import { sx } from '@/store/staticData';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootDispatch, RootState } from '@/store/reducers/store';
-import { deleteTokenData } from '@/store/reducers/authorizationSlice';
+import {
+	clearUsedAndLimit,
+	deleteTokenData,
+	setUsedAndLimit,
+} from '@/store/reducers/authorizationSlice';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 
 export const Header = () => {
@@ -21,13 +25,17 @@ export const Header = () => {
 	const accessToken = useSelector(
 		(state: RootState) => state.authorization.accessToken
 	);
-	const [usedCompanies, setUsedCompanies] = useState<number>(0);
-	const [limit, setLimit] = useState<number>(0);
+	const usedCompanies = useSelector(
+		(state: RootState) => state.authorization.usedCompanies
+	);
+	const limitCompanies = useSelector(
+		(state: RootState) => state.authorization.limitCompanies
+	);
 	const router = useRouter();
 
 	useEffect(() => {
 		const sendData = async () => {
-			if (accessToken.length !== 0) {
+			if (accessToken.length !== 0 && limitCompanies === null) {
 				try {
 					const response = await axios.get(
 						'https://gateway.scan-interfax.ru/api/v1/account/info',
@@ -37,11 +45,9 @@ export const Header = () => {
 							},
 						}
 					);
-					// нет смысла выносить в редакс, тк эти данные используются только в этом компоненте, записывать
-					// в редакс чтобы сохранить в локал сторейдж тоже, тк данные должны часто обновляться, как я понял, задумывалось,
-					// чтобы эта проверка выполнялась на сервере, но этого не проиходит
-					setUsedCompanies(response.data.eventFiltersInfo.usedCompanyCount);
-					setLimit(response.data.eventFiltersInfo.companyLimit);
+					// Как я понял, задумывалось, чтобы эта проверка выполнялась на сервере, но этого не проиходит,
+					// поэтому ограничивать запросы пользователя для текущей сессии по одному токену буду я
+					dispatch(setUsedAndLimit(response.data.eventFiltersInfo));
 				} catch (e) {
 					console.error(e);
 				}
@@ -49,7 +55,7 @@ export const Header = () => {
 		};
 
 		sendData();
-	}, [accessToken]);
+	}, [accessToken, dispatch, limitCompanies]);
 
 	return (
 		<header>
@@ -71,13 +77,13 @@ export const Header = () => {
 				{isAuthorized ? (
 					<div className={st.limitAndAuthorized}>
 						<div className={st.limit}>
-							{limit ? (
+							{limitCompanies || usedCompanies ? (
 								<>
 									<p className={st.lineOne}>
 										Использовано компаний <span>&nbsp;{usedCompanies}</span>
 									</p>
 									<p className={st.lineTwo}>
-										Лимит по компаниям <span>&nbsp;{limit}</span>
+										Лимит по компаниям <span>&nbsp;{limitCompanies}</span>
 									</p>
 								</>
 							) : (
@@ -98,6 +104,7 @@ export const Header = () => {
 									sx={sx}
 									onClick={() => {
 										dispatch(deleteTokenData());
+										dispatch(clearUsedAndLimit());
 										router.push('/');
 									}}>
 									Выйти

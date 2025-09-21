@@ -35,6 +35,8 @@ export interface InitialAuthorizationState {
 	accessToken: string;
 	expire: string;
 	activeTariff: 0 | 1 | 2;
+	usedCompanies: number | null;
+	limitCompanies: number | null;
 }
 
 interface DataItem {

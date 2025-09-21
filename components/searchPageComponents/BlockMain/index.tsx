@@ -21,6 +21,7 @@ import { dateValidator } from '@/helpers/dateValidator';
 import { clearPreviousHistogram } from '@/store/reducers/histogramSlice';
 import { clearPreviousIds } from '@/store/reducers/idSlice';
 import { clearPreviousDocs } from '@/store/reducers/docSlice';
+import { incrUsedDecrLimit } from '@/store/reducers/authorizationSlice';
 
 export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
@@ -35,6 +36,9 @@ export const BLockMain = () => {
 	const eDate = useSelector(
 		(state: RootState) => state.searchConfiguration.eDate
 	);
+	const companyLimit = useSelector(
+		(state: RootState) => state.authorization.limitCompanies
+	);
 	const router = useRouter();
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,7 +48,8 @@ export const BLockMain = () => {
 			if (
 				innValidator(inn) &&
 				limitValidator(limit) &&
-				dateValidator(sDate, eDate)
+				dateValidator(sDate, eDate) &&
+				companyLimit !== 0
 			) {
 				dispatch(
 					setInnAndLimit({
@@ -52,6 +57,7 @@ export const BLockMain = () => {
 						limit: +limit,
 					})
 				);
+				dispatch(incrUsedDecrLimit());
 				router.push('/results');
 			}
 		}
@@ -106,11 +112,13 @@ export const BLockMain = () => {
 							})}>
 							*
 						</span>
-						{limit !== null && limit.length === 0 && (
+						{limit !== null && !limit.length && (
 							<p className={st.oneMoreIncrorrectValue}>Обязательное поле</p>
 						)}
-						{limit !== null && !limitValidator(limit) && (
+						{limit?.length && !limitValidator(limit) ? (
 							<p className={st.incorrectValue}>Введите корректные данные</p>
+						) : (
+							<div></div> // это для предотвращения появления нуля после звездочки (не могу объяснить, но иногда вылетает)
 						)}
 					</label>
 					<input
