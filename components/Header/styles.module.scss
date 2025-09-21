@@ -37,6 +37,23 @@
 		justify-content: space-between;
 		align-items: center;
 
+		.burgerBtn {
+			display: none !important;
+			padding: 12px 10px;
+			height: 50px;
+			min-width: 0 !important;
+			width: 50px;
+
+			.burger {
+				width: 30px;
+				height: 25px;
+				background-image: url(../../public/burgerMenu.svg);
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: 30px 25px;
+			}
+		}
+
 		.limit {
 			position: absolute;
 			right: 200px;
@@ -67,6 +84,7 @@
 					color: #8ac540;
 				}
 			}
+
 			.loaderContainer {
 				position: relative;
 
@@ -264,6 +282,42 @@
 				background-color: #ffb64f;
 			}
 		}
+
+		.mobAuthorizedUser {
+			.mobName {
+				margin: 0 0 10px;
+				color: #ffffff;
+				text-align: center;
+				font-weight: 400;
+				font-size: 14px;
+			}
+
+			.mobAvatar {
+				margin: 0 auto 10px;
+				background-image: url(../../public/pickles.png);
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				border-radius: 50%;
+				width: 60px;
+				height: 60px;
+			}
+
+			.mobExitBtn {
+				padding: 0;
+				width: 250px;
+				height: 40px;
+				background-color: #7ce3e1;
+				color: #000000;
+				font-weight: 500;
+				font-size: 20px;
+				border-radius: 5px;
+
+				&:hover {
+					background-color: #ffb64f;
+				}
+			}
+		}
 	}
 }
 
@@ -282,6 +336,52 @@
 	.container {
 		.links {
 			display: none;
+		}
+
+		.limitAndAuthorized {
+			.authorizedUser {
+				display: none;
+			}
+
+			.limit {
+				top: -5px;
+				right: 60px;
+				width: 132px;
+				height: 75px;
+
+				.lineOne {
+					font-size: 8px;
+					margin: 5px 20px 2px 10px;
+
+					span {
+						font-size: 14px;
+						font-weight: 700;
+						color: #000000;
+					}
+				}
+
+				.lineTwo {
+					font-size: 8px;
+					margin: 0 36px 0 10px;
+
+					span {
+						font-size: 14px;
+						font-weight: 700;
+						color: #8ac540;
+					}
+				}
+
+				.loaderContainer {
+					.loader {
+						top: 23px;
+						left: 53px;
+					}
+				}
+			}
+
+			.burgerBtn {
+				display: block !important;
+			}
 		}
 
 		.authorization {

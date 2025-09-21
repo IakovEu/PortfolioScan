@@ -118,6 +118,13 @@ export const Header = () => {
 								</div>
 								<div className={st.avatar}></div>
 							</div>
+							<Button
+								className={st.burgerBtn}
+								onClick={() => {
+									setBurgerMenu(true);
+								}}>
+								<div className={st.burger}></div>
+							</Button>
 						</div>
 					) : (
 						<div className={st.authorization}>
@@ -175,22 +182,47 @@ export const Header = () => {
 						</Link>
 					</nav>
 					<div className={st.mobBtnContainer}>
-						<Button
-							className={st.mobReg}
-							sx={sx}
-							onClick={() => {
-								router.push('/authorization/register');
-							}}>
-							Зарегистрироваться
-						</Button>
-						<Button
-							className={st.mobAuthorize}
-							sx={sx}
-							onClick={() => {
-								router.push('/authorization/login');
-							}}>
-							Войти
-						</Button>
+						{!isAuthorized ? (
+							<>
+								<Button
+									className={st.mobReg}
+									sx={sx}
+									onClick={() => {
+										router.push('/authorization/register');
+									}}>
+									Зарегистрироваться
+								</Button>
+								<Button
+									className={st.mobAuthorize}
+									sx={sx}
+									onClick={() => {
+										router.push('/authorization/login');
+									}}>
+									Войти
+								</Button>
+							</>
+						) : (
+							<div className={st.mobAuthorizedUser}>
+								<p className={st.mobName}>Mr. Pickles</p>
+								<div className={st.mobAvatar}></div>
+								<Button
+									className={st.mobExitBtn}
+									sx={sx}
+									onClick={() => {
+										setBurgerMenu(false);
+										dispatch(deleteTokenData());
+										dispatch(clearUsedAndLimit());
+										router.push('/');
+										toast('Вы вышли из аккаунта', {
+											...toastSettings,
+											className: st.notification,
+										});
+									}}>
+									Выйти
+								</Button>
+								<div className={st.avatar}></div>
+							</div>
+						)}
 					</div>
 				</div>
 			)}
