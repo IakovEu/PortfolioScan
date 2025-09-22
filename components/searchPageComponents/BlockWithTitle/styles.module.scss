@@ -1,7 +1,11 @@
 .container {
 	margin: 69px 0 47px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 
 	.titleAndImages {
 		.title {
@@ -24,7 +28,10 @@
 			position: absolute;
 			top: 250px;
 			right: 500px;
-			user-select: none;
+			-webkit-user-select: none;
+			   -moz-user-select: none;
+			    -ms-user-select: none;
+			        user-select: none;
 			z-index: 1;
 		}
 
@@ -32,7 +39,10 @@
 			position: absolute;
 			top: 270px;
 			right: 145px;
-			user-select: none;
+			-webkit-user-select: none;
+			   -moz-user-select: none;
+			    -ms-user-select: none;
+			        user-select: none;
 			z-index: 1;
 		}
 	}

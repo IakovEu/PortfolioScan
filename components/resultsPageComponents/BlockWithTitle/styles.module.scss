@@ -1,8 +1,13 @@
 .container {
 	margin: 25px 0 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 
 	.titleAndTxt {
 		.title {
@@ -20,7 +25,10 @@
 
 	.imageGroup {
 		margin-right: 15px;
-		user-select: none;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
 	}
 }
 
@@ -28,7 +36,9 @@
 	.container {
 		margin: 25px 60px 60px;
 		gap: 21px;
-		justify-content: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 	}
 }
 

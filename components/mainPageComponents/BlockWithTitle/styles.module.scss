@@ -1,5 +1,7 @@
 .container {
 	margin: 24px auto 109px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 
 	.title {
@@ -29,6 +31,9 @@
 	}
 
 	.image {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
 		user-select: none;
 	}
 }
@@ -47,7 +52,10 @@
 
 @media (max-width: 1200px) {
 	.container {
+		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
+		-webkit-box-pack: center;
+		-ms-flex-pack: center;
 		justify-content: center;
 	}
 }
@@ -70,7 +78,7 @@
 			font-size: 20px;
 		}
 
-		.image{
+		.image {
 			width: 347px;
 			height: auto;
 		}

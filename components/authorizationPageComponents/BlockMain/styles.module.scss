@@ -1,9 +1,14 @@
 .container {
 	position: relative;
 	margin: 69px 81px 80px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
 
 	.title {
 		max-width: 750px;
@@ -11,6 +16,8 @@
 		font-size: 40px;
 		font-family: 'Montserrat';
 		z-index: 2;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
 		height: fit-content;
 	}
 
@@ -18,13 +25,18 @@
 		position: absolute;
 		left: 85px;
 		bottom: 23px;
-		user-select: none;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
 	}
 }
 
 @media (max-width: 1300px) {
 	.container {
 		margin: 31px auto 0;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
 		height: fit-content;
 		display: block;
 
@@ -35,7 +47,9 @@
 		.image {
 			bottom: -405px;
 			left: 50%;
-			transform: translate(-50%);
+			-webkit-transform: translate(-50%);
+			    -ms-transform: translate(-50%);
+			        transform: translate(-50%);
 			width: 335px;
 			height: 356px;
 		}
@@ -53,7 +67,9 @@
 		.image {
 			bottom: -405px;
 			left: 50%;
-			transform: translate(-50%);
+			-webkit-transform: translate(-50%);
+			    -ms-transform: translate(-50%);
+			        transform: translate(-50%);
 			width: 335px;
 			height: 356px;
 		}

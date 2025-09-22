@@ -2,13 +2,22 @@
 	height: 93px;
 	max-width: 1440px;
 	margin: 0 auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	padding: 0 60px;
 
 	.logo {
-		user-select: none;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
 		width: 141px;
 		height: 93px;
 		background-image: url(../../public/logo.png);
@@ -16,8 +25,12 @@
 
 	.links {
 		width: 236px;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
 
 		.link {
 			text-decoration: none;
@@ -33,9 +46,15 @@
 
 	.limitAndAuthorized {
 		position: relative;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 
 		.burgerBtn {
 			display: none !important;
@@ -98,6 +117,8 @@
 		}
 
 		.authorizedUser {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
 
 			.nameAndBtn {
@@ -109,7 +130,9 @@
 				}
 
 				.exitBtn {
-					justify-content: end;
+					-webkit-box-pack: end;
+					    -ms-flex-pack: end;
+					        justify-content: end;
 					width: 31px;
 					color: #0000007c;
 					font-family: 'inter';
@@ -138,9 +161,15 @@
 
 	.authorization {
 		width: 251px;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 
 		.btnRegister {
 			font-size: 14px;
@@ -208,9 +237,15 @@
 	background-color: #029491;
 
 	.logoAndClose {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		padding: 0 20px 0 14px;
 
 		.mobLogo {
@@ -234,10 +269,19 @@
 		margin: 46px auto 75px;
 		width: 65px;
 		height: 109px;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 
 		.menuLink {
 			text-decoration: none;
@@ -252,8 +296,15 @@
 	}
 
 	.mobBtnContainer {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		flex-direction: column;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
 		width: fit-content;
 		margin: 0 auto;
 		gap: 15px;
@@ -387,6 +438,8 @@
 		}
 
 		.authorization {
+			width: -webkit-fit-content;
+			width: -moz-fit-content;
 			width: fit-content;
 
 			.btnRegister,

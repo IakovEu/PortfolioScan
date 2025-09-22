@@ -21,16 +21,27 @@
 
 	.swiperContainer {
 		position: relative;
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		-webkit-box-pack: justify;
+		    -ms-flex-pack: justify;
+		        justify-content: space-between;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		margin-bottom: 107px;
 
 		.customNext,
 		.customPrev {
 			cursor: pointer;
+			width: -webkit-fit-content;
+			width: -moz-fit-content;
 			width: fit-content;
-			user-select: none;
+			-webkit-user-select: none;
+			   -moz-user-select: none;
+			    -ms-user-select: none;
+			        user-select: none;
 		}
 
 		.carousel {
@@ -51,9 +62,16 @@
 				color: #ffffff;
 				border-top-left-radius: 10px;
 				border-bottom-left-radius: 10px;
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				    -ms-flex-direction: column;
+				        flex-direction: column;
+				-webkit-box-pack: justify;
+				    -ms-flex-pack: justify;
+				        justify-content: space-between;
 				z-index: 2;
 
 				.categories {
@@ -66,9 +84,16 @@
 			.slide {
 				text-align: center;
 				border-right: 2px solid #949494;
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				    -ms-flex-direction: column;
+				        flex-direction: column;
+				-webkit-box-pack: justify;
+				    -ms-flex-pack: justify;
+				        justify-content: space-between;
 				height: 124px;
 
 				.slideCategories {
@@ -111,16 +136,27 @@
 		.swiperContainerForThree {
 			display: block;
 			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			-webkit-box-pack: justify;
+			    -ms-flex-pack: justify;
+			        justify-content: space-between;
+			-webkit-box-align: center;
+			    -ms-flex-align: center;
+			        align-items: center;
 			margin-bottom: 107px;
 
 			.customNext,
 			.customPrev {
 				cursor: pointer;
+				width: -webkit-fit-content;
+				width: -moz-fit-content;
 				width: fit-content;
-				user-select: none;
+				-webkit-user-select: none;
+				   -moz-user-select: none;
+				    -ms-user-select: none;
+				        user-select: none;
 			}
 
 			.carousel {
@@ -141,9 +177,16 @@
 					color: #ffffff;
 					border-top-left-radius: 10px;
 					border-bottom-left-radius: 10px;
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
+					-webkit-box-orient: vertical;
+					-webkit-box-direction: normal;
+					    -ms-flex-direction: column;
+					        flex-direction: column;
+					-webkit-box-pack: justify;
+					    -ms-flex-pack: justify;
+					        justify-content: space-between;
 					z-index: 2;
 
 					.categories {
@@ -156,9 +199,16 @@
 				.slide {
 					text-align: center;
 					border-right: 2px solid #949494;
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
+					-webkit-box-orient: vertical;
+					-webkit-box-direction: normal;
+					    -ms-flex-direction: column;
+					        flex-direction: column;
+					-webkit-box-pack: justify;
+					    -ms-flex-pack: justify;
+					        justify-content: space-between;
 					height: 124px;
 
 					.slideCategories {
@@ -200,16 +250,27 @@
 		.swiperContainerForOne {
 			display: block;
 			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			-webkit-box-pack: justify;
+			    -ms-flex-pack: justify;
+			        justify-content: space-between;
+			-webkit-box-align: center;
+			    -ms-flex-align: center;
+			        align-items: center;
 			margin-bottom: 57px;
 
 			.customNext,
 			.customPrev {
 				cursor: pointer;
+				width: -webkit-fit-content;
+				width: -moz-fit-content;
 				width: fit-content;
-				user-select: none;
+				-webkit-user-select: none;
+				   -moz-user-select: none;
+				    -ms-user-select: none;
+				        user-select: none;
 			}
 
 			.carousel {
@@ -230,8 +291,12 @@
 					color: #ffffff;
 					border-top-left-radius: 10px;
 					border-top-right-radius: 10px;
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
-					justify-content: space-between;
+					-webkit-box-pack: justify;
+					    -ms-flex-pack: justify;
+					        justify-content: space-between;
 					z-index: 2;
 
 					.categories {
@@ -243,9 +308,15 @@
 
 				.slide {
 					text-align: center;
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
-					justify-content: space-between;
-					align-items: center;
+					-webkit-box-pack: justify;
+					    -ms-flex-pack: justify;
+					        justify-content: space-between;
+					-webkit-box-align: center;
+					    -ms-flex-align: center;
+					        align-items: center;
 					padding: 0 10px;
 
 					.slideCategories {
