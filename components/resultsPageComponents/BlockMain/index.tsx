@@ -87,6 +87,11 @@ export const BlockMain = () => {
 								{el.ok.attributes.isDigest && (
 									<span className={st.underItemTitle}>Сводки новостей</span>
 								)}
+								{!el.ok.attributes.isTechNews &&
+									!el.ok.attributes.isAnnouncement &&
+									!el.ok.attributes.isDigest && (
+										<div className={st.fakeUnderItemTitle}></div>
+									)}
 								<div className={st.blockWithImg}>
 									<h4 className={st.notImage}>NEWS</h4>
 								</div>

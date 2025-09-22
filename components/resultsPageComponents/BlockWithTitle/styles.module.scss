@@ -1,5 +1,5 @@
 .container {
-	margin-top: 25px;
+	margin: 25px 60px 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -21,5 +21,43 @@
 	.imageGroup {
 		margin-right: 15px;
 		user-select: none;
+	}
+}
+
+@media (max-width: 1200px) {
+	.container {
+		margin-bottom: 60px;
+		gap: 21px;
+		justify-content: center;
+	}
+}
+
+@media (max-width: 800px) {
+	.container {
+		.titleAndTxt {
+			.title {
+				margin: 0 0 21px;
+				font-size: 28px;
+			}
+
+			.underTitle {
+				font-size: 18px;
+			}
+		}
+
+		.imageGroup {
+			margin-right: 0;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.container {
+		margin: 20px 12px 60px;
+
+		.imageGroup {
+			width: 350px;
+			height: auto;
+		}
 	}
 }
