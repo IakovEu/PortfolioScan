@@ -10,8 +10,7 @@ import googleImg from '@/public/google.svg';
 import facebookImg from '@/public/facebook.svg';
 import yandexImg from '@/public/yandex.svg';
 import lockImg from '@/public/lock.svg';
-import { realLogin, realPassword, sx, toastSettings } from '@/store/staticData';
-import axios from 'axios';
+import { sx, toastSettings } from '@/store/staticData';
 import {
 	loginValidator,
 	passwordValidator,
@@ -38,15 +37,21 @@ export const LoginForm = () => {
 		const sendData = async () => {
 			try {
 				if (login === 'bebra1' && password === '000111') {
-					const response = await axios.post(
-						'https://gateway.scan-interfax.ru/api/v1/account/login',
-						{
-							login: realLogin || process.env.NEXT_PUBLIC_LOGIN,
-							password: realPassword || process.env.NEXT_PUBLIC_PASSWORD,
-						}
-					);
+					const res = await fetch('/api/login', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ login, password }),
+					});
+
+					const data = await res.json();
+
+					if (!res.ok || data.error) {
+						setError(true);
+						return;
+					}
+
 					setError(false);
-					dispatch(setTokenData(response.data));
+					dispatch(setTokenData(data));
 					toast('Вы успешно вошли в аккаунт', {
 						...toastSettings,
 						className: st.notification,
@@ -57,7 +62,7 @@ export const LoginForm = () => {
 				}
 			} catch (e) {
 				setError(true);
-				console.log(e);
+				console.error(e);
 			}
 		};
 
