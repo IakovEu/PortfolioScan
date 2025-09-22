@@ -111,7 +111,7 @@ export const LoginForm = () => {
 						className={clsx(st.input, {
 							[st.incorrectInput]: loginValidator(login),
 						})}
-						type="tel"
+						type="text"
 						value={login}
 						onChange={(e) => setLogin(e.target.value)}
 					/>
