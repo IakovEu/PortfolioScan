@@ -41,9 +41,9 @@ export const LoginForm = () => {
 					const response = await axios.post(
 						'https://gateway.scan-interfax.ru/api/v1/account/login',
 						{
-							login: process.env.NEXT_PUBLIC_LOGIN || process.env.APP_LOGIN,
+							login: process.env.APP_LOGIN || process.env.NEXT_PUBLIC_LOGIN,
 							password:
-								process.env.NEXT_PUBLIC_PASSWORD || process.env.APP_PASSWORD,
+								process.env.APP_PASSWORD || process.env.NEXT_PUBLIC_PASSWORD,
 						}
 					);
 					setError(false);
