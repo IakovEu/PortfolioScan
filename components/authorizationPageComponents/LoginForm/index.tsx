@@ -38,6 +38,11 @@ export const LoginForm = () => {
 		const sendData = async () => {
 			try {
 				if (login === 'bebra1' && password === '000111') {
+					console.log(process.env.APP_LOGIN);
+					console.log(process.env.APP_PASSWORD);
+					console.log(realLogin);
+					console.log(realPassword);
+
 					const response = await axios.post(
 						'https://gateway.scan-interfax.ru/api/v1/account/login',
 						{
@@ -45,9 +50,6 @@ export const LoginForm = () => {
 							password: realPassword || process.env.NEXT_PUBLIC_PASSWORD,
 						}
 					);
-					console.log(process.env.APP_LOGIN);
-					console.log(process.env.APP_PASSWORD);
-
 					setError(false);
 					dispatch(setTokenData(response.data));
 					toast('Вы успешно вошли в аккаунт', {
