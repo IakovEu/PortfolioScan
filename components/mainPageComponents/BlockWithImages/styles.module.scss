@@ -4,3 +4,13 @@
 	background-repeat: no-repeat;
 	background-image: url(../../../public/imageGroup.png);
 }
+
+@media (max-width: 800px) {
+	.container {
+		margin-bottom: 81px;
+		height: 393px;
+		background-repeat: no-repeat;
+		background-position: left;
+		background-size: cover;
+	}
+}

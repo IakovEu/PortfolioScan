@@ -1,184 +1,283 @@
-.subTitle {
-	font-size: 45;
-	font-family: 'Montserrat';
-	margin: 0 0 70px;
-}
+.container {
+	margin: 0 0 118px;
 
-.cards {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 118px;
-	gap: 15px;
+	.subTitle {
+		font-size: 45px;
+		font-family: 'Montserrat';
+		margin: 0 0 70px;
+	}
 
-	.card {
-		position: relative;
-		width: 415px;
-		box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-		border-radius: 13px;
+	.cards {
+		max-width: 1320px;
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
 
-		.currentTariff {
-			position: absolute;
-			top: 137px;
-			right: 10px;
-			background-color: #3ba5e0;
-			color: #ffffff;
-			font-weight: 400;
-			font-size: 14px;
-			width: 134px;
-			height: 24px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border-radius: 10px;
-		}
-
-		.cardTop {
+		.card {
 			position: relative;
-			padding: 30px;
-			border-top-left-radius: 10px;
-			border-top-right-radius: 10px;
-			text-wrap: nowrap;
+			width: 415px;
+			box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+			border-radius: 13px;
 
-			.name {
-				font-size: 30px;
-				font-weight: 500;
-				margin: 0 0 10px;
-			}
-
-			.underName {
-				margin: 0;
-				font-size: 18px;
-				font-weight: 400;
-				position: relative;
-				z-index: 2;
-			}
-
-			.firstIcon {
+			.currentTariff {
 				position: absolute;
-				top: 16px;
-				right: 11px;
-				user-select: none;
-			}
-
-			.secondIcon {
-				position: absolute;
-				top: 0;
-				right: 6px;
-				width: 94px;
-				height: auto;
-				user-select: none;
-			}
-
-			.thirdIcon {
-				position: absolute;
-				top: 23px;
-				right: 5px;
-				user-select: none;
-			}
-		}
-
-		.firstCardTop {
-			background-color: #ffb64f;
-		}
-
-		.secondCardTop {
-			background-color: #7ce3e1;
-		}
-
-		.thirdCardTop {
-			background-color: #000000;
-			color: #ffffff;
-		}
-
-		.cardBody {
-			padding: 33px 0 0 30px;
-
-			.price {
-				margin: 0 0 10px;
-				display: flex;
-				gap: 19px;
-				align-items: center;
-				font-size: 30px;
-				font-weight: 500;
-
-				.crossedPrice {
-					font-weight: 500;
-					font-size: 25px;
-					color: gray;
-				}
-			}
-
-			.underPrice {
-				font-weight: 400;
-				font-size: 18px;
-				margin-bottom: 59px;
-			}
-			// Чтобы равномерно опускался блок вместе с другими при переносе строки
-			.makeInvisible {
+				top: 137px;
+				right: 10px;
+				background-color: #3ba5e0;
 				color: #ffffff;
-			}
-
-			.inTariff {
-				margin: 0 0 10px;
-				font-size: 20px;
-				font-weight: 500;
-			}
-
-			.tariffPoints {
-				margin: 0 0 5px;
+				font-weight: 400;
+				font-size: 14px;
+				width: 134px;
+				height: 24px;
 				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 10px;
+			}
 
-				img {
+			.cardTop {
+				position: relative;
+				padding: 30px;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				text-wrap: nowrap;
+
+				.name {
+					font-size: 30px;
+					font-weight: 500;
+					margin: 0 0 10px;
+				}
+
+				.underName {
 					margin: 0;
+					font-size: 18px;
+					font-weight: 400;
+					position: relative;
+					z-index: 2;
+				}
+
+				.firstIcon {
+					position: absolute;
+					top: 16px;
+					right: 11px;
 					user-select: none;
 				}
 
-				.tariffPoint {
-					margin: 0 0 0 8px;
-					font-size: 18px;
+				.secondIcon {
+					position: absolute;
+					top: 0;
+					right: 6px;
+					width: 94px;
+					height: auto;
+					user-select: none;
+				}
+
+				.thirdIcon {
+					position: absolute;
+					top: 23px;
+					right: 5px;
+					user-select: none;
+				}
+			}
+
+			.firstCardTop {
+				background-color: #ffb64f;
+			}
+
+			.secondCardTop {
+				background-color: #7ce3e1;
+			}
+
+			.thirdCardTop {
+				background-color: #000000;
+				color: #ffffff;
+			}
+
+			.cardBody {
+				padding: 33px 0 0 30px;
+
+				.price {
+					margin: 0 0 10px;
+					display: flex;
+					gap: 19px;
+					align-items: center;
+					font-size: 30px;
+					font-weight: 500;
+
+					.crossedPrice {
+						font-weight: 500;
+						font-size: 25px;
+						color: gray;
+					}
+				}
+
+				.underPrice {
 					font-weight: 400;
-					text-wrap: nowrap;
+					font-size: 18px;
+					margin-bottom: 59px;
+				}
+				// Чтобы равномерно опускался блок вместе с другими при переносе строки
+				.makeInvisible {
+					color: #ffffff;
+				}
+
+				.inTariff {
+					margin: 0 0 10px;
+					font-size: 20px;
+					font-weight: 500;
+				}
+
+				.tariffPoints {
+					margin: 0 0 5px;
+					display: flex;
+
+					img {
+						margin: 0;
+						user-select: none;
+					}
+
+					.tariffPoint {
+						margin: 0 0 0 8px;
+						font-size: 18px;
+						font-weight: 400;
+						text-wrap: nowrap;
+					}
+				}
+			}
+
+			.btnBlock {
+				margin: 55px auto 24px;
+				width: fit-content;
+
+				.defaultBtn {
+					background-color: #5970ff;
+					height: 59px;
+					width: 355px;
+					font-size: 20px;
+					font-weight: 400;
+				}
+
+				.activeBtn {
+					background-color: #d2d2d2;
+					color: #000000;
+					height: 59px;
+					width: 355px;
+					font-size: 20px;
+					font-weight: 400;
+				}
+
+				.defaultBtn:hover,
+				.activeBtn:hover {
+					background-color: #ffb64f;
 				}
 			}
 		}
 
-		.btnBlock {
-			margin: 55px auto 24px;
-			width: fit-content;
+		.activeFirstCard {
+			border: 2px solid #ffb64f;
+		}
 
-			.defaultBtn {
-				background-color: #5970ff;
-				height: 59px;
-				width: 355px;
-				font-size: 20px;
-				font-weight: 400;
-			}
+		.activeSecondCard {
+			border: 2px solid #7ce3e1;
+		}
 
-			.activeBtn {
-				background-color: #d2d2d2;
-				color: #000000;
-				height: 59px;
-				width: 355px;
-				font-size: 20px;
-				font-weight: 400;
-			}
-
-			.defaultBtn:hover,
-			.activeBtn:hover {
-				background-color: #ffb64f;
-			}
+		.activeThirdCard {
+			border: 2px solid #000000;
 		}
 	}
+}
 
-	.activeFirstCard {
-		border: 2px solid #ffb64f;
+@media (max-width: 1400px) {
+	.container {
+		margin: 0 60px 118px;
+
+		.cards {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
 	}
+}
 
-	.activeSecondCard {
-		border: 2px solid #7ce3e1;
-	}
+@media (max-width: 800px) {
+	.container {
+		margin: 0 0 43px;
 
-	.activeThirdCard {
-		border: 2px solid #000000;
+		.subTitle {
+			font-size: 28px;
+			margin: 0 14px 37px;
+		}
+
+		.cards {
+			gap: 41px;
+
+			.card {
+				width: 335px;
+
+				.currentTariff {
+					font-size: 12px;
+					width: 120px;
+					height: 20px;
+				}
+
+				.cardTop {
+					padding: 30px 24px;
+
+					.name {
+						font-size: 20px;
+						margin: 0 0 22px;
+					}
+
+					.firstIcon {
+						width: 59px;
+						height: auto;
+					}
+
+					.secondIcon {
+						width: 68px;
+						height: auto;
+					}
+
+					.thirdIcon {
+						width: 73px;
+						height: auto;
+					}
+				}
+
+				.cardBody {
+					padding: 30px 24px;
+
+					.underPrice {
+						margin-bottom: 37px;
+					}
+
+					.inTariff {
+						font-size: 18px;
+					}
+
+					.tariffPoints {
+						img {
+							width: 16px;
+							height: auto;
+							margin: 0;
+							user-select: none;
+						}
+
+						.tariffPoint {
+							font-size: 16px;
+						}
+					}
+				}
+
+				.btnBlock {
+					margin: 7px auto 30px;
+
+					.defaultBtn,
+					.activeBtn {
+						width: 287px;
+						font-size: 18px;
+					}
+				}
+			}
+		}
 	}
 }

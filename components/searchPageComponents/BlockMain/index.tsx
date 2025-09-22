@@ -99,7 +99,9 @@ export const BLockMain = () => {
 						onChange={(e) => {
 							setInn(e.target.value);
 						}}
-						className={st.input}
+						className={clsx(st.input, {
+							[st.incorrectInput]: inn !== null && !innValidator(inn),
+						})}
 						id="i1"
 						name="inn"
 						type="text"
@@ -131,7 +133,11 @@ export const BLockMain = () => {
 						onChange={(e) => {
 							setLimit(e.target.value);
 						}}
-						className={st.input}
+						className={clsx(st.input, {
+							[st.incorrectInput]:
+								(limit !== null && !limitValidator(limit)) ||
+								(limit !== null && limit.length === 0),
+						})}
 						id="i3"
 						name="limit"
 						type="number"
@@ -153,7 +159,7 @@ export const BLockMain = () => {
 							</p>
 						)}
 					</label>
-					<DateSelection />
+					<DateSelection sDate={sDate} eDate={eDate} />
 				</div>
 				<div className={st.checkboxAndSubmit}>
 					<Checkboxes />

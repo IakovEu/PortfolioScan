@@ -75,6 +75,17 @@
 					border: 1px solid #029491;
 				}
 			}
+
+			.incorrectInput {
+				border: 1px solid #ff5959;
+				box-shadow: 0 0 8px #ff59594d;
+
+				&:focus {
+					outline: none;
+					border: 1px solid #ff5959;
+				}
+			}
+
 			.chooseDate {
 				width: 372px;
 				display: flex;
@@ -105,6 +116,16 @@
 						border: 1px solid #029491;
 					}
 				}
+
+				.incorrectCustomInput {
+				border: 1px solid #ff5959;
+				box-shadow: 0 0 8px #ff59594d;
+
+				&:focus {
+					outline: none;
+					border: 1px solid #ff5959;
+				}
+			}
 
 				.firstrectangle {
 					position: absolute;

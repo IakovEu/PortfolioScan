@@ -1,6 +1,6 @@
 .container {
 	position: relative;
-	margin-bottom: 62px;
+	margin-bottom: 70px;
 
 	.subTitle {
 		font-size: 45px;
@@ -23,14 +23,18 @@
 				font-weight: 400;
 			}
 
-			.slideImage{
+			.slideImage {
 				user-select: none;
 			}
 		}
 	}
 
 	.customNext,
-	.customPrev {
+	.customNext2,
+	.customNext3,
+	.customPrev,
+	.customPrev2,
+	.customPrev3 {
 		position: absolute;
 		cursor: pointer;
 		width: fit-content;
@@ -38,13 +42,78 @@
 		user-select: none;
 	}
 
-	.customPrev {
+	.customPrev,
+	.customPrev2,
+	.customPrev3 {
 		left: 0;
 		bottom: 92px;
 	}
 
-	.customNext {
+	.customNext,
+	.customNext2,
+	.customNext3 {
 		right: 0;
 		bottom: 92px;
+	}
+
+	.customPrev3,
+	.customNext3 {
+		bottom: 77px;
+	}
+	.twoSlides,
+	.oneSlide {
+		display: none;
+	}
+}
+
+@media (max-width: 1400px) {
+	.container {
+		margin: 0 47px 70px 47px;
+	}
+}
+
+@media (max-width: 800px) {
+	.container {
+		margin: 0 14px 80px;
+
+		.subTitle {
+			width: 274px;
+			font-size: 28px;
+		}
+
+		.threeSlides,
+		.oneSlide {
+			display: none;
+		}
+
+		.twoSlides {
+			display: block;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.container {
+		.threeSlides,
+		.twoSlides {
+			display: none;
+		}
+
+		.oneSlide {
+			display: block;
+		}
+
+		.carousel {
+			.slide {
+				height: 188px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+
+				.slideImage {
+					width: 58px;
+					height: auto;
+				}
+			}
+		}
 	}
 }

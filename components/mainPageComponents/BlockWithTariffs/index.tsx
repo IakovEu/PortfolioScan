@@ -19,7 +19,7 @@ export const BlockWithTariffs = () => {
 	);
 
 	return (
-		<section>
+		<section className={st.container}>
 			<h2 className={st.subTitle}>НАШИ ТАРИФЫ</h2>
 			<div className={st.cards}>
 				{dataCards.map((el, ind) => {

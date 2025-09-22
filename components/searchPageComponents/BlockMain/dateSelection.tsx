@@ -8,8 +8,15 @@ import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import { RootDispatch } from '@/store/reducers/store';
 import { setEDate, setSDate } from '@/store/reducers/searchFormAnswersSlice';
+import { dateValidator } from '@/helpers/dateValidator';
 
-export const DateSelection = () => {
+export const DateSelection = ({
+	sDate,
+	eDate,
+}: {
+	sDate: string;
+	eDate: string;
+}) => {
 	const dispatch = useDispatch<RootDispatch>();
 	const [dateTo, setDateTo] = useState<Date | null>(null);
 	const [dateFrom, setDateFrom] = useState<Date | null>(null);
@@ -33,7 +40,9 @@ export const DateSelection = () => {
 					dispatch(setSDate(formatDateToDDMMYYYY(date)));
 					setDateFrom(date);
 				}}
-				customInput={<CustomInputFrom rotate={isOpenFrom} />}
+				customInput={
+					<CustomInputFrom rotate={isOpenFrom} sDate={sDate} eDate={eDate} />
+				}
 				dateFormat="dd.MM.yyyy"
 				calendarClassName={st.castomCalendar}
 				popperPlacement="top-start"
@@ -47,7 +56,9 @@ export const DateSelection = () => {
 					dispatch(setEDate(formatDateToDDMMYYYY(date)));
 					setDateTo(date);
 				}}
-				customInput={<CustomInputTo rotate={isOpenTo} />}
+				customInput={
+					<CustomInputTo rotate={isOpenTo} sDate={sDate} eDate={eDate} />
+				}
 				dateFormat="dd.MM.yyyy"
 				calendarClassName={st.castomCalendar}
 				popperPlacement="top-start"
@@ -60,14 +71,19 @@ export const DateSelection = () => {
 
 interface CustomInputProps extends React.HTMLProps<HTMLInputElement> {
 	rotate: boolean;
+	sDate?: string;
+	eDate?: string;
 }
 
 const CustomInputFrom = forwardRef<HTMLInputElement, CustomInputProps>(
-	({ value, onClick, onChange, rotate }, ref) => (
+	({ value, onClick, onChange, rotate, sDate, eDate }, ref) => (
 		<>
 			<input
 				name="sDate"
-				className={st.customInput}
+				className={clsx(st.customInput, {
+					[st.incorrectCustomInput]:
+						sDate && eDate && !dateValidator(sDate, eDate),
+				})}
 				onClick={onClick}
 				onChange={onChange}
 				value={value}
@@ -87,11 +103,14 @@ const CustomInputFrom = forwardRef<HTMLInputElement, CustomInputProps>(
 CustomInputFrom.displayName = 'CustomInputFrom';
 
 const CustomInputTo = forwardRef<HTMLInputElement, CustomInputProps>(
-	({ value, onClick, onChange, rotate }, ref) => (
+	({ value, onClick, onChange, rotate, sDate, eDate }, ref) => (
 		<>
 			<input
 				name="eDate"
-				className={st.customInput}
+				className={clsx(st.customInput, {
+					[st.incorrectCustomInput]:
+						sDate && eDate && !dateValidator(sDate, eDate),
+				})}
 				onClick={onClick}
 				onChange={onChange}
 				value={value}

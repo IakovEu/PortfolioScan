@@ -7,18 +7,26 @@ import { Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import { carouselIcons, carouselTxt } from '@/store/staticData';
 
-export const Slider = () => {
+export const Slider = ({
+	amount,
+	prev,
+	next,
+}: {
+	amount: number;
+	prev: string;
+	next: string;
+}) => {
 	return (
 		<Swiper
 			className={st.carousel}
 			spaceBetween={35}
-			slidesPerView={3}
-			slidesPerGroup={3}
+			slidesPerView={amount}
+			slidesPerGroup={amount}
 			loop={true}
 			modules={[Navigation]}
 			navigation={{
-				prevEl: `.${st.customPrev}`,
-				nextEl: `.${st.customNext}`,
+				prevEl: `.${st[prev]}`,
+				nextEl: `.${st[next]}`,
 			}}>
 			{carouselIcons.map((el, ind) => {
 				return (
