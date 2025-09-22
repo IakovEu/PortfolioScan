@@ -103,3 +103,6 @@ export const toastSettings: ToastOptions = {
 	progress: undefined,
 	theme: 'dark',
 };
+
+export const realLogin = process.env.APP_LOGIN;
+export const realPassword = process.env.APP_PASSWORD;

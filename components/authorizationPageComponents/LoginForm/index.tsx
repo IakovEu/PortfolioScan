@@ -10,7 +10,7 @@ import googleImg from '@/public/google.svg';
 import facebookImg from '@/public/facebook.svg';
 import yandexImg from '@/public/yandex.svg';
 import lockImg from '@/public/lock.svg';
-import { sx, toastSettings } from '@/store/staticData';
+import { realLogin, realPassword, sx, toastSettings } from '@/store/staticData';
 import axios from 'axios';
 import {
 	loginValidator,
@@ -41,11 +41,13 @@ export const LoginForm = () => {
 					const response = await axios.post(
 						'https://gateway.scan-interfax.ru/api/v1/account/login',
 						{
-							login: process.env.APP_LOGIN || process.env.NEXT_PUBLIC_LOGIN,
-							password:
-								process.env.APP_PASSWORD || process.env.NEXT_PUBLIC_PASSWORD,
+							login: realLogin || process.env.NEXT_PUBLIC_LOGIN,
+							password: realPassword || process.env.NEXT_PUBLIC_PASSWORD,
 						}
 					);
+					console.log(process.env.APP_LOGIN);
+					console.log(process.env.APP_PASSWORD);
+
 					setError(false);
 					dispatch(setTokenData(response.data));
 					toast('Вы успешно вошли в аккаунт', {
