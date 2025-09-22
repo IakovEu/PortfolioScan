@@ -22,32 +22,34 @@ export const Tonality = () => {
 	};
 
 	return (
-		<Box sx={{ minWidth: 120, mb: '30px' }}>
-			<FormControl fullWidth variant="outlined">
-				<Select
-					name="tonality"
-					value={ton}
-					onChange={handleChange}
-					onClick={() => setRotate((prev) => !prev)}
-					MenuProps={{ disableScrollLock: true }}
-					variant="outlined"
-					IconComponent={(props) => (
-						<CustomArrowIcon {...props} rotate={rotate} />
-					)}
-					sx={{
-						width: 242,
-						height: 43,
-						'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-							borderColor: '#029491',
-							borderWidth: 1,
-						},
-					}}>
-					<MenuItem value={'Позитивная'}>Позитивная</MenuItem>
-					<MenuItem value={'Негативная'}>Негативная</MenuItem>
-					<MenuItem value={'Любая'}>Любая</MenuItem>
-				</Select>
-			</FormControl>
-		</Box>
+		<div className={st.inputTonality}>
+			<Box sx={{ minWidth: 120, mb: '30px' }}>
+				<FormControl fullWidth variant="outlined">
+					<Select
+						name="tonality"
+						value={ton}
+						onChange={handleChange}
+						onClick={() => setRotate((prev) => !prev)}
+						MenuProps={{ disableScrollLock: true }}
+						variant="outlined"
+						IconComponent={(props) => (
+							<CustomArrowIcon {...props} rotate={rotate} />
+						)}
+						sx={{
+							// width: 	,
+							height: 43,
+							'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+								borderColor: '#029491',
+								borderWidth: 1,
+							},
+						}}>
+						<MenuItem value={'Позитивная'}>Позитивная</MenuItem>
+						<MenuItem value={'Негативная'}>Негативная</MenuItem>
+						<MenuItem value={'Любая'}>Любая</MenuItem>
+					</Select>
+				</FormControl>
+			</Box>
+		</div>
 	);
 };
 

@@ -28,6 +28,7 @@ export const BLockMain = () => {
 	const dispatch = useDispatch<RootDispatch>();
 	const [inn, setInn] = useState<string | null>(null);
 	const [limit, setLimit] = useState<string | null>(null);
+	const [moreSettings, showMoreSettings] = useState<boolean>(false);
 	const isAuthorized = useSelector(
 		(state: RootState) => state.authorization.isAuthorized
 	);
@@ -161,8 +162,18 @@ export const BLockMain = () => {
 					</label>
 					<DateSelection sDate={sDate} eDate={eDate} />
 				</div>
+				<Button
+					className={st.showMoreSettings}
+					sx={sx}
+					onClick={() => {
+						showMoreSettings((prev) => !prev);
+					}}>
+					{!moreSettings
+						? 'Открыть дополнительные настройки'
+						: 'Скрыть дополнительные настройки'}
+				</Button>
 				<div className={st.checkboxAndSubmit}>
-					<Checkboxes />
+					<Checkboxes isActive={moreSettings} />
 					<div className={st.btnContainer}>
 						<Button
 							className={st.submitBtn}

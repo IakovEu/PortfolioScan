@@ -45,7 +45,6 @@ export const DateSelection = ({
 				}
 				dateFormat="dd.MM.yyyy"
 				calendarClassName={st.castomCalendar}
-				popperPlacement="top-start"
 				onCalendarOpen={() => setIsOpenFrom(true)}
 				onCalendarClose={() => setIsOpenFrom(false)}
 			/>
@@ -61,7 +60,6 @@ export const DateSelection = ({
 				}
 				dateFormat="dd.MM.yyyy"
 				calendarClassName={st.castomCalendar}
-				popperPlacement="top-start"
 				onCalendarOpen={() => setIsOpenTo(true)}
 				onCalendarClose={() => setIsOpenTo(false)}
 			/>
@@ -80,7 +78,7 @@ const CustomInputFrom = forwardRef<HTMLInputElement, CustomInputProps>(
 		<>
 			<input
 				name="sDate"
-				className={clsx(st.customInput, {
+				className={clsx(st.customInput, st.customLeftInput, {
 					[st.incorrectCustomInput]:
 						sDate && eDate && !dateValidator(sDate, eDate),
 				})}
@@ -90,7 +88,6 @@ const CustomInputFrom = forwardRef<HTMLInputElement, CustomInputProps>(
 				ref={ref}
 				readOnly
 				placeholder="Дата начала"
-				style={{ marginRight: '20px' }}
 			/>
 			<Image
 				className={clsx(st.firstrectangle, { [st.rotateRectangle]: rotate })}

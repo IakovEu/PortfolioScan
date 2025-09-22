@@ -1,11 +1,9 @@
 .container {
-	margin: 69px 0 64px;
+	margin: 69px 0 47px;
 	display: flex;
 	justify-content: space-between;
 
 	.titleAndImages {
-		margin-bottom: 47px;
-
 		.title {
 			position: relative;
 			font-family: 'Montserrat';
@@ -36,6 +34,52 @@
 			right: 145px;
 			user-select: none;
 			z-index: 1;
+		}
+	}
+}
+
+@media (max-width: 1400px) {
+	.container {
+		margin: 69px 60px 64px;
+	}
+}
+
+@media (max-width: 1000px) {
+	.container {
+		.titleAndImages {
+			.document {
+				top: 250px;
+				right: 100px;
+			}
+
+			.folders {
+				display: none;
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	.container {
+		margin: 20px 14px 21px;
+
+		.titleAndImages {
+			.document {
+				width: 59px;
+				height: auto;
+				top: 200px;
+				right: 35px;
+			}
+
+			.title {
+				font-size: 28px;
+				margin: 0 0 19px;
+			}
+
+			.underTitle {
+				font-size: 18px;
+				width: 300px;
+			}
 		}
 	}
 }

@@ -1,3 +1,4 @@
+import st from './styles.module.scss';
 import React, { useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,8 +8,9 @@ import { dataCheckboxes } from '@/store/staticData';
 import { useDispatch } from 'react-redux';
 import { RootDispatch } from '@/store/reducers/store';
 import { setCheckboxes } from '@/store/reducers/searchFormAnswersSlice';
+import clsx from 'clsx';
 
-export const Checkboxes = () => {
+export const Checkboxes = ({ isActive }: { isActive: boolean }) => {
 	const dispatch = useDispatch<RootDispatch>();
 	const initiallyUnchecked = new Set([3, 4, 6]);
 	const [checkedState, setCheckedState] = useState(() =>
@@ -27,7 +29,10 @@ export const Checkboxes = () => {
 	}, [checkedState, dispatch]);
 
 	return (
-		<div>
+		<div
+			className={clsx(st.checkboxeContainer, {
+				[st.activeCheckboxeContainer]: isActive,
+			})}>
 			{dataCheckboxes.map((el, ind) => {
 				return (
 					<FormControlLabel
@@ -57,8 +62,6 @@ export const Checkboxes = () => {
 								fontFamily: 'inter',
 								fontSize: 18,
 								margin: '15px 0 0 17px',
-								whiteSpace: 'nowrap',
-								height: '22px',
 								color: checkedState[ind] ? '#000000' : '#949494',
 							},
 						}}
