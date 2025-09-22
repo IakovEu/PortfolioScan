@@ -1,5 +1,5 @@
 .container {
-	margin: 25px 60px 0;
+	margin: 25px 0 0;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -26,7 +26,7 @@
 
 @media (max-width: 1200px) {
 	.container {
-		margin-bottom: 60px;
+		margin: 25px 60px 60px;
 		gap: 21px;
 		justify-content: center;
 	}

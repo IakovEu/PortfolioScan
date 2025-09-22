@@ -133,6 +133,92 @@ export const BlockWithSummary = () => {
 					<Image src={rightArrow} alt="—>" />
 				</div>
 			</div>
+			<div className={st.swiperContainerForThree}>
+				<div className={st.customPrev}>
+					<Image src={leftArrow} alt="<—" />
+				</div>
+				<Swiper
+					className={st.carousel}
+					slidesPerView={
+						!total || !withRisk ? 1 : total.length > 5 ? 3 : total.length
+					}
+					slidesPerGroup={
+						!total || !withRisk ? 1 : total.length > 5 ? 3 : total.length
+					}
+					loop={true}
+					modules={[Navigation]}
+					navigation={{
+						prevEl: `.${st.customPrev}`,
+						nextEl: `.${st.customNext}`,
+					}}>
+					<div className={st.fixedSlide}>
+						<p className={st.categories}>Период</p>
+						<p className={st.categories}>Всего</p>
+						<p className={st.categories}>Риски</p>
+					</div>
+					{!total || !withRisk ? (
+						<SwiperSlide>
+							<CircularProgress className={st.loader} thickness={5} />
+						</SwiperSlide>
+					) : (
+						total.map((el, ind) => {
+							return (
+								<SwiperSlide className={st.slide} key={ind}>
+									<p className={st.slideCategories}>
+										{formatDateToDDMMYY(el.date)}
+									</p>
+									<p className={st.slideCategories}>{el.value}</p>
+									<p className={st.slideCategories}>{withRisk[ind].value}</p>
+								</SwiperSlide>
+							);
+						})
+					)}
+				</Swiper>
+				<div className={st.customNext}>
+					<Image src={rightArrow} alt="—>" />
+				</div>
+			</div>
+			<div className={st.swiperContainerForOne}>
+				<div className={st.customPrev}>
+					<Image src={leftArrow} alt="<—" />
+				</div>
+				<Swiper
+					className={st.carousel}
+					slidesPerView={1}
+					slidesPerGroup={1}
+					loop={true}
+					modules={[Navigation]}
+					navigation={{
+						prevEl: `.${st.customPrev}`,
+						nextEl: `.${st.customNext}`,
+					}}>
+					<div className={st.fixedSlide}>
+						<p className={st.categories}>Период</p>
+						<p className={st.categories}>Всего</p>
+						<p className={st.categories}>Риски</p>
+					</div>
+					{!total || !withRisk ? (
+						<SwiperSlide>
+							<CircularProgress className={st.loader} thickness={5} />
+						</SwiperSlide>
+					) : (
+						total.map((el, ind) => {
+							return (
+								<SwiperSlide className={st.slide} key={ind}>
+									<p className={st.slideCategories}>
+										{formatDateToDDMMYY(el.date)}
+									</p>
+									<p className={st.slideCategories}>{el.value}</p>
+									<p className={st.slideCategories}>{withRisk[ind].value}</p>
+								</SwiperSlide>
+							);
+						})
+					)}
+				</Swiper>
+				<div className={st.customNext}>
+					<Image src={rightArrow} alt="—>" />
+				</div>
+			</div>
 		</section>
 	);
 };
