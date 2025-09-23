@@ -36,30 +36,26 @@ export const LoginForm = () => {
 		// но чтобы не показывать реальные данные для входа, я их спрятал и вход осуществляется по выдуманным данным
 		const sendData = async () => {
 			try {
-				if (login === 'bebra1' && password === '000111') {
-					const res = await fetch('/api/login', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ login, password }),
-					});
+				const res = await fetch('/api/login', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ login, password }),
+				});
 
-					const data = await res.json();
+				const data = await res.json();
 
-					if (!res.ok || data.error) {
-						setError(true);
-						return;
-					}
-
-					setError(false);
-					dispatch(setTokenData(data));
-					toast('Вы успешно вошли в аккаунт', {
-						...toastSettings,
-						className: st.notification,
-					});
-					router.push('/');
-				} else {
+				if (!res.ok || data.error) {
 					setError(true);
+					return;
 				}
+
+				setError(false);
+				dispatch(setTokenData(data));
+				toast('Вы успешно вошли в аккаунт', {
+					...toastSettings,
+					className: st.notification,
+				});
+				router.push('/');
 			} catch (e) {
 				setError(true);
 				console.error(e);
@@ -176,8 +172,7 @@ export const LoginForm = () => {
 				<div className={st.register}>
 					Функционал регистрации новых пользователей ещё не был добавлен.
 					<br /> <br />
-					Логин: bebra1 <br />
-					Пароль: 000111
+					Логины и пароли предоставлены в ReadMe файле
 				</div>
 			)}
 			<Image className={st.lock} src={lockImg} alt="*" />
